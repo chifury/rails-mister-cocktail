@@ -1,0 +1,33 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.7)), url(https://www.pollinations.ai/prompt/cocktails-fun-laughter-bar-tender-fireworks);">
+  <div class="container">
+    <h1>Keep a journal of your favorite <strong>Cocktail</strong> recipes!</h1>
+    <p>It's easy to get started.</p>
+    <%= link_to new_cocktail_path, class: "btn btn-primary btn-lg" do%>
+    Create <i class="fa-duotone fa-solid fa-martini-glass-citrus"></i>
+    <% end %>
+  </div>
+</div>
+<div class="container mt-4">
+  <h1 class="mt-5 mb-3 fst-italic">COCKTAILS <i class="fa-solid fa-martini-glass fs-2"></i></h1>
+  <div class="row d-flex justify-content-between">
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-12 col-md-6 col-lg-4">
+        <%= link_to cocktail_path(cocktail), class: "text-decoration-none" do %>
+          <div class="card shadow card-hover p-3 m-1 mt-4">
+            <h2 class="fst-italic"><%= cocktail.name.capitalize %></h2>
+            <img src="https://www.pollinations.ai/prompt/<%= cocktail.name %> cocktail drink" alt="<%= cocktail.name %>" class="rounded border-bottom" >
+            <div class="mt-3">
+              <p class="ingredients">
+                <% @doses.each do |dose| %>
+                  <% if dose.cocktail.name == cocktail.name %>
+                    <%= dose.ingredient.name.capitalize %>: <span class="fst-italic"><%= dose.description %></span> <span class="fs-5 light">|</span>
+                  <% end %>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

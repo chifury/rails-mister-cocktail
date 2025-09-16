@@ -1,9 +1,133 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+puts "creating cocktails"
+cocktail_margarita = Cocktail.new
+cocktail_margarita.name = "margarita"
+cocktail_margarita.save!
+
+cocktail_pina_colada = Cocktail.new
+cocktail_pina_colada.name = "pina colada"
+cocktail_pina_colada.save!
+
+cocktail_espresso_martini = Cocktail.new
+cocktail_espresso_martini.name = "espresso martini"
+cocktail_espresso_martini.save!
+
+cocktail_paloma = Cocktail.new
+cocktail_paloma.name = "paloma"
+cocktail_paloma.save!
+
+puts "creating ingredients"
+ingredient_1 = Ingredient.new
+ingredient_1.name = "tequila"
+ingredient_1.save!
+
+ingredient_2 = Ingredient.new
+ingredient_2.name = "triple sec"
+ingredient_2.save!
+
+ingredient_3 = Ingredient.new
+ingredient_3.name = "lime juice"
+ingredient_3.save!
+
+ingredient_4 = Ingredient.new
+ingredient_4.name = "creamy coconut"
+ingredient_4.save!
+
+ingredient_5 = Ingredient.new
+ingredient_5.name = "white rum"
+ingredient_5.save!
+
+ingredient_6 = Ingredient.new
+ingredient_6.name = "pineapple juice"
+ingredient_6.save!
+
+ingredient_7 = Ingredient.new
+ingredient_7.name = "vodka"
+ingredient_7.save!
+
+ingredient_8 = Ingredient.new
+ingredient_8.name = "coffee liqueur"
+ingredient_8.save!
+
+ingredient_9 = Ingredient.new
+ingredient_9.name = "espresso"
+ingredient_9.save!
+
+ingredient_10 = Ingredient.new
+ingredient_10.name = "grapefruit soda"
+ingredient_10.save!
+
+puts "creating doses with corresponding ingredients to make a Margarita"
+dose_50 = Dose.new
+dose_50.description = "50ml"
+dose_50.ingredient = ingredient_1
+dose_50.cocktail = cocktail_margarita
+dose_50.save!
+
+dose_25 = Dose.new
+dose_25.description = "25ml"
+dose_25.ingredient = ingredient_2
+dose_25.cocktail = cocktail_margarita
+dose_25.save!
+
+dose_25i = Dose.new
+dose_25i.description = "25ml"
+dose_25i.ingredient = ingredient_3
+dose_25i.cocktail = cocktail_margarita
+dose_25i.save!
+
+puts "creating doses with corresponding ingredients to make a Pina Colada"
+dose_50i = Dose.new
+dose_50i.description = "50ml"
+dose_50i.ingredient = ingredient_5
+dose_50i.cocktail = cocktail_pina_colada
+dose_50i.save!
+
+dose_30 = Dose.new
+dose_30.description = "30ml"
+dose_30.ingredient = ingredient_4
+dose_30.cocktail = cocktail_pina_colada
+dose_30.save!
+
+dose_90 = Dose.new
+dose_90.description = "90ml"
+dose_90.ingredient = ingredient_6
+dose_90.cocktail = cocktail_pina_colada
+dose_90.save!
+
+puts "creating doses with corresponding ingredients to make a Espresso Martini"
+dose_40 = Dose.new
+dose_40.description = "40ml"
+dose_40.ingredient = ingredient_7
+dose_40.cocktail = cocktail_espresso_martini
+dose_40.save!
+
+dose_20 = Dose.new
+dose_20.description = "20ml"
+dose_20.ingredient = ingredient_8
+dose_20.cocktail = cocktail_espresso_martini
+dose_20.save!
+
+dose_30i = Dose.new
+dose_30i.description = "30ml"
+dose_30i.ingredient = ingredient_9
+dose_30i.cocktail = cocktail_espresso_martini
+dose_30i.save!
+
+puts "creating doses with corresponding ingredients to make a Paloma"
+dose_50ii = Dose.new
+dose_50ii.description = "50ml"
+dose_50ii.ingredient = ingredient_1
+dose_50ii.cocktail = cocktail_paloma
+dose_50ii.save!
+
+dose_15 = Dose.new
+dose_15.description = "15ml"
+dose_15.ingredient = ingredient_3
+dose_15.cocktail = cocktail_paloma
+dose_15.save!
+
+dose_90i = Dose.new
+dose_90i.description = "90ml"
+dose_90i.ingredient = ingredient_10
+dose_90i.cocktail = cocktail_paloma
+dose_90i.save!

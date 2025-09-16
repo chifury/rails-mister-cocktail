@@ -1,0 +1,30 @@
+.grey-font {
+  // color: grey;
+}
+
+h1 {
+  color: #FF13F0;
+  // font-weight: bold;
+  text-shadow:
+    0 0 5px #FF13F0,
+    0 0 10px #FF13F0,
+    0 0 20px #FF13F0,
+    0 0 40px #FF13F0;
+}
+
+h2 {
+  color: #00FFFF;
+  text-shadow:
+    0 0 5px #00FFFF,
+    0 0 10px #00FFFF,
+    0 0 20px #00FFFF,
+    0 0 40px #00FFFF;
+}
+
+.ingredients {
+  color: #D8B4FE;
+}
+
+.light {
+  color: #FFB6C1;
+}
