@@ -4,8 +4,6 @@ class CocktailsController < ApplicationController
     @cocktails = Cocktail.all
     @ingredients = Ingredient.all
     @doses = Dose.all
-
-    
   end
 
   def show
