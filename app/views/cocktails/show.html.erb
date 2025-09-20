@@ -4,20 +4,36 @@
     <!-- cocktail image -->
     <div class="col-12 col-lg-6 card rounded p-3">
       <%= image_tag "https://www.pollinations.ai/prompt/#{@cocktail.name} cocktail drink", alt: @cocktail.name, class: "rounded img-fluid" %>
-      </div>
+    </div>
     <!-- recipe -->
     <div class="col-12 col-lg-5 me-5">
       <div class="vstack gap-2">
         <!-- description & how to -->
         <h2 class="mb-3">Recipe</h2>
-        <div class="text-grey">
-          <h4>Description</h4>
-          <p>this is it!</p>
+        <div class="txt-grey">
+          <h4>What You Need</h4>
+          <ol>
+            <% @ingredients.each do |ingredient|%>
+              <li>
+                <span class="text-light"><%= ingredient.name.capitalize %> </span> -
+                <% @doses.each do |dose| %>
+                  <% if ingredient.id == dose.ingredient_id %>
+                    <%= dose.description %>
+                  <% end %>
+                <% end %>
+              </li>
+            <% end %>
+          </ol>
         </div>
         <!-- ingredients -->
-        <div class="text-grey">
-          <h4>Ingredients</h4>
-          <p>List it</p>
+        <div class="txt-grey">
+          <h4>How to Make It</h4>
+          <p><%= @cocktail.description %></p>
+        </div>
+        <!-- navigation buttons -->
+        <div class="txt-grey">
+          <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary button-hover me-2" %>
+          <%= link_to "Go Back", cocktails_path, class: "btn btn-secondary button-hover" %>
         </div>
       </div>
     </div>

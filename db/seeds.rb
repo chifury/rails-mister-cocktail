@@ -1,18 +1,22 @@
 puts "creating cocktails"
 cocktail_margarita = Cocktail.new
 cocktail_margarita.name = "margarita"
+cocktail_margarita.description = "Combine tequila, fresh lime juice, and triple sec in a shaker filled with ice. Shake well until chilled, then strain into a salt-rimmed glass. Garnish with a lime wheel for a refreshing, balanced cocktail perfect for any occasion."
 cocktail_margarita.save!
 
 cocktail_pina_colada = Cocktail.new
 cocktail_pina_colada.name = "pina colada"
+cocktail_pina_colada.description = "Blend white rum, coconut cream, and fresh pineapple juice with ice until smooth and creamy. Pour into a chilled glass and garnish with a pineapple wedge and maraschino cherry for a tropical, sweet treat."
 cocktail_pina_colada.save!
 
 cocktail_espresso_martini = Cocktail.new
 cocktail_espresso_martini.name = "espresso martini"
+cocktail_espresso_martini.description = "Shake vodka, freshly brewed espresso, coffee liqueur, and a touch of simple syrup with ice. Strain into a chilled martini glass and garnish with coffee beans for a rich, energizing cocktail."
 cocktail_espresso_martini.save!
 
 cocktail_paloma = Cocktail.new
 cocktail_paloma.name = "paloma"
+cocktail_paloma.description = "Mix tequila with fresh grapefruit juice, lime juice, and a splash of soda water. Serve over ice in a salt-rimmed glass and garnish with a lime wedge for a bright, refreshing Mexican classic."
 cocktail_paloma.save!
 
 puts "creating ingredients"
