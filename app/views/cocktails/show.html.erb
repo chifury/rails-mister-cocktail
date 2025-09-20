@@ -15,7 +15,7 @@
           <ol>
             <% @ingredients.each do |ingredient|%>
               <li>
-                <span class="text-light"><%= ingredient.name.capitalize %> </span> -
+                <span class="text-white"><%= ingredient.name.capitalize %> </span> -
                 <% @doses.each do |dose| %>
                   <% if ingredient.id == dose.ingredient_id %>
                     <%= dose.description %>
@@ -29,6 +29,16 @@
         <div class="txt-grey">
           <h4>How to Make It</h4>
           <p><%= @cocktail.description %></p>
+        </div>
+        <div class="mb-4">
+          <h4>Tags</h4>
+          <div class="d-flex justify-content-start align-items-center">
+            <% @tags.each do |tag| %>
+              <div class="me-2">
+                <p class="card rounded p-1 txt-grey"><%= tag.name.capitalize %></p>
+              </div>
+            <% end %>
+          </div>
         </div>
         <!-- navigation buttons -->
         <div class="txt-grey">

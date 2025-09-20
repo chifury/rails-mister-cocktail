@@ -19,6 +19,32 @@ cocktail_paloma.name = "paloma"
 cocktail_paloma.description = "Mix tequila with fresh grapefruit juice, lime juice, and a splash of soda water. Serve over ice in a salt-rimmed glass and garnish with a lime wedge for a bright, refreshing Mexican classic."
 cocktail_paloma.save!
 
+puts "creating tags and cocktail associations"
+tag_1 = Tag.new
+tag_1.name = "tequila"
+tag_1.cocktail = cocktail_margarita
+tag_1.save!
+
+tag_2 = Tag.new
+tag_2.name = "rum"
+tag_2.cocktail = cocktail_pina_colada
+tag_2.save!
+
+tag_3 = Tag.new
+tag_3.name = "vodka"
+tag_3.cocktail = cocktail_espresso_martini
+tag_3.save!
+
+tag_4 = Tag.new
+tag_4.name = "tequila"
+tag_4.cocktail = cocktail_paloma
+tag_4.save!
+
+tag_4x = Tag.new
+tag_4x.name = "lime juice"
+tag_4x.cocktail = cocktail_paloma
+tag_4x.save!
+
 puts "creating ingredients"
 ingredient_1 = Ingredient.new
 ingredient_1.name = "tequila"

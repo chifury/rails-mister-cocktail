@@ -1,15 +1,19 @@
-class DosesController < ApplicationController
+class TagsController < ApplicationController
 
+  def index
+    @tags = Tag.all
+  end
+  
   def new
-    @dose = Dose.new
-    @cocktail = Cocktail.find(params[:cocktail_id])
+    @tag = Tag.new
   end
 
   def create
     @cocktail = Cocktail.find(params[:cocktail_id])
-    @dose = Dose.new(dose_params)
-    @dose.cocktail = @cocktail
-    if @dose.save
+    @tag = Tag.new(tag_params)
+    @tag.cocktail = @cocktail
+
+    if @tag.save
       redirect cocktail_path(@cocktail)
     else
       render "new", content: :unprocessable_content
@@ -17,10 +21,10 @@ class DosesController < ApplicationController
   end
 
   def destroy
-    @dose = Dose.find(params[:id])
+    @tag = Tag.find(params[:id])
     @cocktail = Cocktail.find(params[:cocktail_id])
 
-    if @dose.destroy
+    if @tag.destroy
       redirect_to cocktail_path(@cocktail)
     else
       render "cocktails/show", status: :unprocessable_content
@@ -29,7 +33,7 @@ class DosesController < ApplicationController
 
   private
 
-  def dose_params
-    params.require(:dose).permit(:name, :cocktail_id, :ingredient_id)
+  def tag_params
+    params.require(:tags).permit(:name, :cocktail_id)
   end
 end
