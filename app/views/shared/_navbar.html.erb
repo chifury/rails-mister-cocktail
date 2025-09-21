@@ -1,0 +1,58 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light navbar-sipfolio bg-body-tertiary border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <%= link_to cocktails_path, class: "navbar-brand" do %>
+      <%= image_tag "cocktail-journal4tp.png", alt: "Cocktail journal logo", width: "75", class: "d-inline-block align-text-center ms-2" %>
+      <span class="fs-2 brand-font fw-semibold">SIPFOLIO</span>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto gap-2">
+        <%# if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to cocktails_path, class: "nav-link active fs-5", "aria-current": "page" do %>
+            Browse <i class="fa-regular fa-rectangle-list"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to cocktails_path, class: "nav-link fs-5" do %>
+            Journal <i class="fa-solid fa-book"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_cocktail_path, class: "nav-link fs-5" do %>
+            New Cocktail <i class="fa-solid fa-martini-glass-citrus"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_cocktail_path, class: "nav-link fs-5" do %> SipSense Mix <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_cocktail_path, class: "nav-link fs-5 me-2" do %> SipSense AI <i class="fa-solid fa-comment-dots"></i>
+          <% end %>
+        </li>
+        <li class="nav-item dropdown">
+          <%= image_tag "happy-dog5.png", alt: "user avatar image", class: "avatar dropdown-toggle me-3", id:"navbarDropdown", data: { bs_toggle: "dropdown" }, "aria-haspopup": "true", "aria-expanded": "false" %>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navBarDropdown">
+            <%= link_to "#", class: "dropdown-item fs-5" do %>
+              <i class="fa-solid fa-user"></i> Profile
+            <% end %>
+            <!-- Temporary Log out button that does not work. Remove once you add "devise" gem and user sessions. -->
+            <%= link_to "#", class: "dropdown-item fs-5" do %>
+              <i class="fa-solid fa-right-from-bracket"></i> Log out
+            <% end %>
+            <%#= link_to "Log out", "#" class: "dropdown-item", data: { turbo_method: :delete} %>
+            <%#= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete} %>
+          </div>
+        </li>
+        <%# else %>
+        <!-- <li class="nav-item"> -->
+        <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <!-- </li> -->
+        <%# end %>
+      </ul>
+    </div>
+  </div>
+</nav>
