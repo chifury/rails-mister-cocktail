@@ -1,3 +1,13 @@
 <div class="container">
   <h1>Create a Cocktail</h1>
+  <!-- Create cocktail -->
+  <div class="row">
+    <div class="col-12">
+      <%= simple_form_for @cocktail do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.submit :submit, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 </div>
