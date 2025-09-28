@@ -33,7 +33,7 @@
               <p class="ingredients">
                 <% @doses.each do |dose| %>
                   <% if dose.cocktail.name == cocktail.name %>
-                    <%= dose.ingredient.name.capitalize %>: <span class="fst-italic"><%= dose.description %></span> <span class="fs-5 light">|</span>
+                    <%= dose.ingredient.name.capitalize %>: <span class="fst-italic"><%= number_with_precision(dose.amount, precision: 0) %>ml</span> <span class="fs-5 light">|</span>
                   <% end %>
                 <% end %>
               </p>

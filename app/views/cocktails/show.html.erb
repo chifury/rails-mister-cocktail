@@ -18,7 +18,7 @@
                 <span class="text-white"><%= ingredient.name.capitalize %> </span> -
                 <% @doses.each do |dose| %>
                   <% if ingredient.id == dose.ingredient_id %>
-                    <%= dose.description %>
+                    <%= dose.amount %>
                   <% end %>
                 <% end %>
               </li>

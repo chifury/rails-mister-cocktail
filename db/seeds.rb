@@ -88,76 +88,76 @@ ingredient_10.save!
 
 puts "creating doses with corresponding ingredients to make a Margarita"
 dose_50 = Dose.new
-dose_50.description = "50ml"
+dose_50.amount = 50.0
 dose_50.ingredient = ingredient_1
 dose_50.cocktail = cocktail_margarita
 dose_50.save!
 
 dose_25 = Dose.new
-dose_25.description = "25ml"
+dose_25.amount = 25.0
 dose_25.ingredient = ingredient_2
 dose_25.cocktail = cocktail_margarita
 dose_25.save!
 
 dose_25i = Dose.new
-dose_25i.description = "25ml"
+dose_25i.amount = 25.0
 dose_25i.ingredient = ingredient_3
 dose_25i.cocktail = cocktail_margarita
 dose_25i.save!
 
 puts "creating doses with corresponding ingredients to make a Pina Colada"
 dose_50i = Dose.new
-dose_50i.description = "50ml"
+dose_50i.amount = 50.0
 dose_50i.ingredient = ingredient_5
 dose_50i.cocktail = cocktail_pina_colada
 dose_50i.save!
 
 dose_30 = Dose.new
-dose_30.description = "30ml"
+dose_30.amount = 30.0
 dose_30.ingredient = ingredient_4
 dose_30.cocktail = cocktail_pina_colada
 dose_30.save!
 
 dose_90 = Dose.new
-dose_90.description = "90ml"
+dose_90.amount = 90.0
 dose_90.ingredient = ingredient_6
 dose_90.cocktail = cocktail_pina_colada
 dose_90.save!
 
 puts "creating doses with corresponding ingredients to make a Espresso Martini"
 dose_40 = Dose.new
-dose_40.description = "40ml"
+dose_40.amount = 40.0
 dose_40.ingredient = ingredient_7
 dose_40.cocktail = cocktail_espresso_martini
 dose_40.save!
 
 dose_20 = Dose.new
-dose_20.description = "20ml"
+dose_20.amount = 20.0
 dose_20.ingredient = ingredient_8
 dose_20.cocktail = cocktail_espresso_martini
 dose_20.save!
 
 dose_30i = Dose.new
-dose_30i.description = "30ml"
+dose_30i.amount = 30.0
 dose_30i.ingredient = ingredient_9
 dose_30i.cocktail = cocktail_espresso_martini
 dose_30i.save!
 
 puts "creating doses with corresponding ingredients to make a Paloma"
 dose_50ii = Dose.new
-dose_50ii.description = "50ml"
+dose_50ii.amount = 50.0
 dose_50ii.ingredient = ingredient_1
 dose_50ii.cocktail = cocktail_paloma
 dose_50ii.save!
 
 dose_15 = Dose.new
-dose_15.description = "15ml"
+dose_15.amount = 15.0
 dose_15.ingredient = ingredient_3
 dose_15.cocktail = cocktail_paloma
 dose_15.save!
 
 dose_90i = Dose.new
-dose_90i.description = "90ml"
+dose_90i.amount = 90.0
 dose_90i.ingredient = ingredient_10
 dose_90i.cocktail = cocktail_paloma
 dose_90i.save!
