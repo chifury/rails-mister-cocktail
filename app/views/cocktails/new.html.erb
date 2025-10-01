@@ -3,29 +3,39 @@
   <!-- Create cocktail -->
   <div class="row">
     <div class="col-12">
-     <%= simple_form_for @cocktail do |f| %>
-     <%= f.input :name %>
-     <%= f.input :description %>
-
-     <h3>Doses</h3>
-     <%= f.simple_fields_for :doses do |dose_form| %>
-     <%= dose_form.input :amount, label: "Amount (ml)" %>
-
-     <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
-
-     <p>Or create a new ingredient</p>
-     <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
-     <%= ingredient_form.input :name, label: "New Ingredient Name" %>
-     <% end %>
-     <% end %>
-
-     <h3>Tags</h3>
-     <%= f.simple_fields_for :tags do |tag_form| %>
-     <%= tag_form.input :name, label: "Tag Name" %>
-     <% end %>
-
-     <%= f.button :submit, "Create Cocktail" %>
-     <% end %>
+      <%= simple_form_for @cocktail do |f| %>
+        <%= f.input :name, class: "" %>
+        <%= f.input :description %>
+        <h3>Doses</h3>
+        <%= f.simple_fields_for :doses do |dose_form| %>
+          <h4>Ingredient 1</h4>
+          <%= dose_form.input :amount, label: "Amount (ml)" %>
+          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
+          <p>Or create a new ingredient</p>
+          <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
+            <%= ingredient_form.input :name, label: "New Ingredient Name" %>
+          <% end %>
+          <h4>Ingredient 2</h4>
+          <%= dose_form.input :amount, label: "Amount (ml)" %>
+          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
+          <p>Or create a new ingredient</p>
+          <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
+            <%= ingredient_form.input :name, label: "New Ingredient Name" %>
+          <% end %>
+          <h4>Ingredient 3</h4>
+          <%= dose_form.input :amount, label: "Amount (ml)" %>
+          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
+          <p>Or create a new ingredient</p>
+          <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
+            <%= ingredient_form.input :name, label: "New Ingredient Name" %>
+          <% end %>
+        <% end %>
+        <h3>Tags</h3>
+        <%= f.simple_fields_for :tags do |tag_form| %>
+          <%= tag_form.input :name, label: "Tag Name" %>
+        <% end %>
+        <%= f.button :submit, "Create Cocktail", class: "btn btn-primary mt-4 p-2" %>
+      <% end %>
     </div>
   </div>
 </div>
