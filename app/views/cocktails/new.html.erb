@@ -2,7 +2,7 @@
   <h1>Create a Cocktail</h1>
   <!-- Create cocktail -->
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" data-controller="form-field-vis">
       <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name, class: "" %>
         <%= f.input :description %>
@@ -11,13 +11,17 @@
         <% counter = 0 %>
         <%= f.simple_fields_for :doses do |dose_form| %>
           <% counter += 1 %>
-          <h4>Ingredient <%= counter %></h4>
-          <%= dose_form.input :amount, label: "Amount (ml)" %>
-          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Existing Ingredient" %>
-          <p>Or create a new ingredient (optional)</p>
+          <h4 data-form-field-vis-target="headerFour" hidden>Ingredient <%= counter %></h4>
+          <%= dose_form.hidden_field :amount, label: "Amount (ml)", data: { "form-field-vis-target": "doseAmount"} %>
+          <%= dose_form.hidden_field :ingredient_id, collection: Ingredient.all, prompt: "Select Existing Ingredient", data: { "form-field-vis-target": "newIngredient" } %>
+          <p data-form-field-vis-target="paragraph" hidden>Or create a new ingredient (optional)</p>
           <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
-            <%= ingredient_form.input :name, label: "New Ingredient Name" %>
+            <%= ingredient_form.hidden_field :name, label: "New Ingredient Name", data: { "form-field-vis-target": "selectIngredient"} %>
           <% end %>
+        <% end %>
+        <!-- Add another ingredient -->
+        <%= link_to "#", class: "btn btn-primary mt-3 mb-4", data: { action: "click->form-field-vis#hiddenVisibleFields" } do %>
+          <i class="fa-solid fa-plus"></i>
         <% end %>
         <!-- Create Tags -->
         <h3 class="pink-font">Tags (up to 10)</h3>
