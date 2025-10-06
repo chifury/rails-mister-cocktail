@@ -6,33 +6,25 @@
       <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name, class: "" %>
         <%= f.input :description %>
-        <h3>Doses</h3>
+        <!-- Create doses and associated ingredients -->
+        <h3 class="pink-font">Ingredients (up to 5)</h3>
+        <% counter = 0 %>
         <%= f.simple_fields_for :doses do |dose_form| %>
-          <h4>Ingredient 1</h4>
+          <% counter += 1 %>
+          <h4>Ingredient <%= counter %></h4>
           <%= dose_form.input :amount, label: "Amount (ml)" %>
-          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
-          <p>Or create a new ingredient</p>
-          <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
-            <%= ingredient_form.input :name, label: "New Ingredient Name" %>
-          <% end %>
-          <h4>Ingredient 2</h4>
-          <%= dose_form.input :amount, label: "Amount (ml)" %>
-          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
-          <p>Or create a new ingredient</p>
-          <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
-            <%= ingredient_form.input :name, label: "New Ingredient Name" %>
-          <% end %>
-          <h4>Ingredient 3</h4>
-          <%= dose_form.input :amount, label: "Amount (ml)" %>
-          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Ingredient" %>
-          <p>Or create a new ingredient</p>
+          <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Existing Ingredient" %>
+          <p>Or create a new ingredient (optional)</p>
           <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
             <%= ingredient_form.input :name, label: "New Ingredient Name" %>
           <% end %>
         <% end %>
-        <h3>Tags</h3>
+        <!-- Create Tags -->
+        <h3 class="pink-font">Tags (up to 10)</h3>
+        <% counter_tag = 0 %>
         <%= f.simple_fields_for :tags do |tag_form| %>
-          <%= tag_form.input :name, label: "Tag Name" %>
+          <% counter_tag += 1 %>
+          <%= tag_form.input :name, label: "Tag #{counter_tag}", prompt: "Name" %>
         <% end %>
         <%= f.button :submit, "Create Cocktail", class: "btn btn-primary mt-4 p-2" %>
       <% end %>

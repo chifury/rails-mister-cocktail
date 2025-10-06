@@ -17,8 +17,8 @@ class CocktailsController < ApplicationController
 
   def new
     @cocktail = Cocktail.new
-    @cocktail.doses.build.build_ingredient # builds both dose and nested ingredient
-    @cocktail.tags.build
+    5.times { @cocktail.doses.build.build_ingredient } # builds both dose and nested ingredient
+    10.times { @cocktail.tags.build }
   end
 
   def create

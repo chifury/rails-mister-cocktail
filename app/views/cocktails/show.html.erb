@@ -18,7 +18,7 @@
                 <span class="text-white"><%= ingredient.name.capitalize %> </span> -
                 <% @doses.each do |dose| %>
                   <% if ingredient.id == dose.ingredient_id %>
-                    <%= dose.amount %>
+                    <%= number_with_precision(dose.amount, precision: 0) %> ml
                   <% end %>
                 <% end %>
               </li>
@@ -43,7 +43,7 @@
         <!-- navigation buttons -->
         <div class="txt-grey">
           <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary button-hover me-2" %>
-          <%= link_to "Go Back", cocktails_path, class: "btn btn-secondary button-hover" %>
+          <%= link_to "Browse", cocktails_path, class: "btn btn-secondary button-hover" %>
         </div>
       </div>
     </div>

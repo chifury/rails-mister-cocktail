@@ -2,7 +2,7 @@ class Dose < ApplicationRecord
   belongs_to :cocktail # creates a method dose.cocktails
   belongs_to :ingredient # creates a method dose.ingredients
 
-  accepts_nested_attributes_for :ingredient
+  accepts_nested_attributes_for :ingredient, reject_if: proc { |attributes| attributes["name"].blank? }
 
   validates :amount, presence: true
   validates :cocktail, presence: true
