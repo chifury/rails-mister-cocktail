@@ -5,7 +5,7 @@ class Cocktail < ApplicationRecord
   has_many :ingredients, through: :doses # creates a method cocktail.ingredients
   has_many :tags, dependent: :destroy # creates a method cocktail.tags
 
-  accepts_nested_attributes_for :doses, allow_destroy: true
+  accepts_nested_attributes_for :doses, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
 
   #validations
