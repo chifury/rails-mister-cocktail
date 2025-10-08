@@ -6,7 +6,9 @@ class Cocktail < ApplicationRecord
   has_many :tags, dependent: :destroy # creates a method cocktail.tags
 
   accepts_nested_attributes_for :doses, allow_destroy: true, reject_if: :all_blank
-  accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
+  accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: :all_blank
+  # accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
+  # The code in line 10 probably does the same as the code in line 9. 
 
   #validations
   validates :name, presence: true, uniqueness: true

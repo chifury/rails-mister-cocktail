@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["ingredient"]
 
   connect() {
-    console.log("connection successful")
+    console.log("ingredient controller connected")
     this.visibleCount = 1 // Show first ingredient on load. If you set it to 0 it will show no ingredients on load.
     this.updateVisibility() // Refer to this function whenever you need to check for visibility (if) conditions.
   }
@@ -22,15 +22,16 @@ export default class extends Controller {
       // console.log(index)
 
       // Find the hidden input named with `_destroy` for this dose.
-      const destroyInput = element.querySelector('input[name*="_destroy"]')
+      const destroyInput = element.querySelector('input[name*="_destroy"]');
+      // console.log(destroyInput);
 
-      // Checks for visibility (if) conditions. 
+      // Checks for visibility (if) conditions.
       if (index < this.visibleCount) {
-        element.removeAttribute("hidden")
-        if (destroyInput) destroyInput.value = "0" // Keep this dose.
+        element.removeAttribute("hidden");
+        if (destroyInput) destroyInput.value = "0"; // Keep this dose.
       } else {
-        element.setAttribute("hidden", "")
-        if (destroyInput) destroyInput.value = "1" // Mark for destruction.
+        element.setAttribute("hidden", "");
+        if (destroyInput) destroyInput.value = "1"; // Mark for destruction.
       }
     })
   }
