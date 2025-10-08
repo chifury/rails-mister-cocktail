@@ -23,7 +23,7 @@ export default class extends Controller {
 
       // Find the hidden input named with `_destroy` for this dose.
       const destroyInput = element.querySelector('input[name*="_destroy"]');
-      // console.log(destroyInput);
+      console.log(destroyInput);
 
       // Checks for visibility (if) conditions.
       if (index < this.visibleCount) {

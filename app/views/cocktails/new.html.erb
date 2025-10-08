@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Create a Cocktail</h1>
+  <h1 class="mt-5">Create a Cocktail</h1>
   <div class="row">
     <div class="col-12">
 
@@ -10,7 +10,7 @@
 
         <!-- Create doses and associated ingredients -->
         <div class="form-group" data-controller="form-field-vis">
-          <h3 class="pink-font">Ingredients (up to 5)</h3>
+          <h3 class="pink-font mt-5">Ingredients (up to 5)</h3>
           <% counter = 0 %>
           <%= f.simple_fields_for :doses do |dose_form| %>
             <% counter += 1 %>
@@ -38,7 +38,7 @@
 
         <!-- Create tags -->
         <div class="form-group" data-controller="tag-field-vis">
-          <h3 class="pink-font">Tags (up to 10)</h3>
+          <h3 class="pink-font mt-5">Tags (up to 10)</h3>
           <% counter_tag = 0 %>
           <%= f.simple_fields_for :tags do |tag_form| %>
             <% counter_tag += 1 %>
@@ -56,7 +56,7 @@
             <i class="fa-solid fa-plus"></i>
           <% end %>
         </div>
-        
+
         <!-- Submit button -->
         <%= f.button :submit, "Create Cocktail", class: "btn btn-primary mt-4 p-2" %>
       <% end %>

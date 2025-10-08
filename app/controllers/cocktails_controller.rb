@@ -46,8 +46,11 @@ class CocktailsController < ApplicationController
 
   def destroy
     @cocktail = Cocktail.find(params[:id])
-    @cocktail.destroy
-    redirect_to cocktails_path, status: :see_other
+    if @cocktail.destroy
+      redirect_to cocktails_path, status: :see_other
+    else
+      render :show, status: :unprocessable_content
+    end
   end
 
   private

@@ -9,7 +9,7 @@
     <div class="col-12 col-lg-5 me-5">
       <div class="vstack gap-2">
         <!-- description & how to -->
-        <h2 class="mb-3">Recipe</h2>
+        <h2 class="mb-3 mt-4">Recipe</h2>
         <div class="txt-grey">
           <h4>What You Need</h4>
           <ol>
@@ -44,6 +44,12 @@
         <div class="txt-grey">
           <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary button-hover me-2" %>
           <%= link_to "Browse", cocktails_path, class: "btn btn-secondary button-hover" %>
+        </div>
+        <div class="mt-5">
+          <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete Cocktail ?" } do %>
+            <!-- <i class="fa-solid fa-trash-can text-danger fs-4"></i> -->
+            <i class="fa-regular fa-trash-can text-danger fs-4"></i>
+          <% end %>
         </div>
       </div>
     </div>

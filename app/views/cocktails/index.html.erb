@@ -38,6 +38,18 @@
                 <% end %>
               </p>
             </div>
+            <div>
+              <div class="d-flex align-items-center flex-wrap" style="gap: 0.5rem;">
+                <h5 class="text-light mb-0 me-2">Tags:</h5>
+                <% @tags.each do |tag| %>
+                  <% if tag.cocktail.name == cocktail.name %>
+                    <p class="card rounded px-2 py-1 txt-grey mb-0" style="display: inline-block;">
+                      <%= tag.name.capitalize %>
+                    </p>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>

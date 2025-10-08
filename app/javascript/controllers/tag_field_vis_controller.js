@@ -21,7 +21,7 @@ static targets = ["tag"]
     this.tagTargets.forEach((element, index) => {
 
       const destroyInputTag = element.querySelector('input[name*="_destroy"]');
-      // console.log(destroyInputTag);
+      console.log(destroyInputTag);
 
       if (index < this.visibleCount) {
         element.removeAttribute("hidden");
