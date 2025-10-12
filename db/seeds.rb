@@ -1,24 +1,25 @@
 puts "Cleaning the Database..."
 
-puts "Cleaning Cocktail instances"
+puts "cleaning Cocktail instances"
 Cocktail.destroy_all
 
-puts "Cleaning Tag instances"
+puts "cleaning Tag instances"
 Tag.destroy_all
 
-puts "Cleaning Ingredient instances"
+puts "cleaning Ingredient instances"
 Ingredient.destroy_all
 
-puts "Cleaning Dose instances"
+puts "cleaning Dose instances"
 Dose.destroy_all
 
-puts "Cleaning User instances"
+puts "cleaning User instances"
 User.destroy_all
 
-puts "Creating users"
+puts "Adding data to the Database..."
+
+puts "creating users"
 user1 = User.new(email: "drinksjournal.7p31d@silomails.com", password: "789123idfk", username: "bartender", first_name: "Baggins")
 user1.save!
-puts "#{User.count} user(s) created"
 
 puts "creating cocktails"
 cocktail_margarita = Cocktail.new
