@@ -16,11 +16,6 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to journal_path, class: "nav-link fs-5" do %>
-              Journal <i class="fa-solid fa-book"></i>
-            <% end %>
-          </li>
-          <li class="nav-item">
             <%= link_to new_cocktail_path, class: "nav-link fs-5" do %>
               New Cocktail <i class="fa-solid fa-martini-glass-citrus"></i>
             <% end %>
@@ -30,7 +25,12 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_cocktail_path, class: "nav-link fs-5 me-2" do %> SipSense AI <i class="fa-solid fa-comment-dots"></i>
+            <%= link_to new_cocktail_path, class: "nav-link fs-5" do %> SipSense AI <i class="fa-solid fa-comment-dots"></i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to journal_path, class: "nav-link fs-5 me-2" do %>
+              Journal <i class="fa-solid fa-book"></i>
             <% end %>
           </li>
           <li class="nav-item dropdown">
