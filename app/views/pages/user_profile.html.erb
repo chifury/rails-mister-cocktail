@@ -1,0 +1,10 @@
+<div class="container">
+  <h1 class="mt-5"><%= @user.first_name.capitalize %>'s Profile </h1>
+  <h2 class="my-4">Account Information</h2>
+  <p><span class="purple-font">Name:</span> <%= @user.first_name %></p>
+  <p><span class="purple-font">Username:</span> <%= @user.username %></p>
+  <p><span class="purple-font">Email:</span> <%= @user.email %></p>
+  <%= link_to "Edit", edit_user_registration_path, class: "btn btn-primary mt-3 mb-2" %>
+  <h4 class="mt-4 mb-3 pink-font">Account Stats</h4>
+  <p class="mb-1"><span class="purple-font">Cocktail Recipes Created:</span> <%= @cocktails.count %></p>
+</div>

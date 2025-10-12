@@ -3,18 +3,30 @@
   <head>
     <title>Sipfolio</title>
     <%= favicon_link_tag "cocktail-journal2.png" %>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <%= render "shared/navbar" %>
-    <%= yield %>
-    <%= render "shared/footer" %>
+
+    <%= link_to "Skip to main content", "#main-content", class: "visually-hidden-focusable" %>
+
+    <header>
+      <%= render "shared/navbar" %>
+    </header>
+
+    <main id="main-content">
+      <%= yield %>
+    </main>
+
+    <%= render "shared/flashes" %>
+    <!-- <p class="notice m-4"><%#= notice %></p> -->
+    <!-- <p class="alert m-4"><%#= alert %></p> -->
+
+    <footer>
+      <%= render "shared/footer" %>
+    </footer>
   </body>
 </html>

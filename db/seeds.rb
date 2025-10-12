@@ -1,20 +1,46 @@
+puts "Cleaning the Database..."
+
+puts "Cleaning Cocktail instances"
+Cocktail.destroy_all
+
+puts "Cleaning Tag instances"
+Tag.destroy_all
+
+puts "Cleaning Ingredient instances"
+Ingredient.destroy_all
+
+puts "Cleaning Dose instances"
+Dose.destroy_all
+
+puts "Cleaning User instances"
+User.destroy_all
+
+puts "Creating users"
+user1 = User.new(email: "drinksjournal.7p31d@silomails.com", password: "789123idfk", username: "bartender", first_name: "Baggins")
+user1.save!
+puts "#{User.count} user(s) created"
+
 puts "creating cocktails"
 cocktail_margarita = Cocktail.new
+cocktail_margarita.user = user1
 cocktail_margarita.name = "margarita"
 cocktail_margarita.description = "Combine tequila, fresh lime juice, and triple sec in a shaker filled with ice. Shake well until chilled, then strain into a salt-rimmed glass. Garnish with a lime wheel for a refreshing, balanced cocktail perfect for any occasion."
 cocktail_margarita.save!
 
 cocktail_pina_colada = Cocktail.new
+cocktail_pina_colada.user = user1
 cocktail_pina_colada.name = "pina colada"
 cocktail_pina_colada.description = "Blend white rum, coconut cream, and fresh pineapple juice with ice until smooth and creamy. Pour into a chilled glass and garnish with a pineapple wedge and maraschino cherry for a tropical, sweet treat."
 cocktail_pina_colada.save!
 
 cocktail_espresso_martini = Cocktail.new
+cocktail_espresso_martini.user = user1
 cocktail_espresso_martini.name = "espresso martini"
 cocktail_espresso_martini.description = "Shake vodka, freshly brewed espresso, coffee liqueur, and a touch of simple syrup with ice. Strain into a chilled martini glass and garnish with coffee beans for a rich, energizing cocktail."
 cocktail_espresso_martini.save!
 
 cocktail_paloma = Cocktail.new
+cocktail_paloma.user = user1
 cocktail_paloma.name = "paloma"
 cocktail_paloma.description = "Mix tequila with fresh grapefruit juice, lime juice, and a splash of soda water. Serve over ice in a salt-rimmed glass and garnish with a lime wedge for a bright, refreshing Mexican classic."
 cocktail_paloma.save!

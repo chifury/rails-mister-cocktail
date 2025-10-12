@@ -1,2 +1,55 @@
-<h1>Pages#home</h1>
-
+<div class="banner h-100" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.7)), url(https://www.pollinations.ai/prompt/cocktails-organized-and-stacked-up-in-a-bar-neon-lights-happy-energy);">
+  <div class="container">
+    <h1>Your ultimate cocktail journal and discovery app</h1>
+    <p>Start exploring new cocktail recipes</p>
+    <%= link_to cocktails_path, class: "btn btn-primary btn-lg me-2" do%>
+      Discover Drinks <i class="fa-duotone fa-solid fa-martini-glass-citrus"></i>
+    <% end %>
+  </div>
+</div>
+<section class="container my-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4 my-5">
+    <div class="col">
+      <%= link_to cocktails_path, class: "text-decoration-none" do %>
+        <div class="card bg-dark text-white shadow card-hover p-3 h-100 d-flex flex-column" style="cursor: pointer;">
+          <div class="card-body flex-grow-1">
+            <div class="d-flex align-items-center mb-2">
+              <span class="fs-2 me-2">🍸</span>
+              <h2 class="mb-0">Curate Your Sipfolio</h2>
+            </div>
+            <p>Effortlessly collect, organize, and browse your favorite cocktails—build your personal drink library in seconds.</p>
+          </div>
+          <img src="https://www.pollinations.ai/prompt/cocktails-organized-and-stacked-up-in-a-bar-neon-lights-happy-energy" class="card-img-bottom mt-auto rounded" alt="Cocktail bar scene" />
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= link_to cocktails_path, class: "text-decoration-none" do %>
+        <div class="card bg-dark text-white shadow card-hover p-3 h-100 d-flex flex-column" style="cursor: pointer;">
+          <div class="card-body flex-grow-1">
+            <div class="d-flex align-items-center mb-2">
+              <span class="fs-2 me-2">🤖</span>
+              <h2 class="mb-0">AI Mixology Magic</h2>
+            </div>
+            <p>Get custom cocktail ideas, discover trending drinks, and let AI match recipes to your taste and ingredients.</p>
+          </div>
+          <img src="https://www.pollinations.ai/prompt/ai-powered-cocktail-creation-with-futuristic-glowing-mixology" class="card-img-bottom mt-auto rounded" alt="Futuristic cocktail scene" />
+        </div>
+      <% end %>
+    </div>
+    <div class="col">
+      <%= link_to cocktails_path, class: "text-decoration-none" do %>
+        <div class="card bg-dark text-white shadow card-hover p-3 h-100 d-flex flex-column" style="cursor: pointer;">
+          <div class="card-body flex-grow-1">
+            <div class="d-flex align-items-center mb-2">
+              <span class="fs-2 me-2">🌎</span>
+              <h2 class="mb-0">Share Globally</h2>
+            </div>
+            <p>Connect with cocktail fans worldwide, share journals, and get inspired by drinks from every corner.</p>
+          </div>
+          <img src="https://www.pollinations.ai/prompt/global-cocktail-sharing-in-a-cozy-bar-exchanging-recipes" class="card-img-bottom mt-auto rounded" alt="Global cocktail sharing" />
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

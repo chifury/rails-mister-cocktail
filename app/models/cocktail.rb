@@ -1,6 +1,7 @@
 class Cocktail < ApplicationRecord
   # associations
   # The dependent: :destroy on cocktails deletes associated doses when a cocktail is deleted, but not ingredients.
+  belongs_to :user
   has_many :doses, dependent: :destroy # creates a method cocktail.doses
   has_many :ingredients, through: :doses # creates a method cocktail.ingredients
   has_many :tags, dependent: :destroy # creates a method cocktail.tags
@@ -8,9 +9,10 @@ class Cocktail < ApplicationRecord
   accepts_nested_attributes_for :doses, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: :all_blank
   # accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: proc { |attributes| attributes["name"].blank? }
-  # The code in line 10 probably does the same as the code in line 9. 
+  # The code in line 10 probably does the same as the code in line 9.
 
   #validations
+  validates :user_id, presence: true
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
   validate :max_doses_limit
