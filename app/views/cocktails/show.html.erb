@@ -41,17 +41,60 @@
           </div>
         </div>
         <!-- navigation buttons -->
-        <div class="txt-grey">
-          <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary button-hover me-2" %>
-          <%= link_to "Browse", cocktails_path, class: "btn btn-secondary button-hover" %>
-        </div>
-        <div class="mt-5">
+        <div class="d-flex justify-content-start align-items-center gap-3">
+          <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
+          <%#= link_to "Browse", cocktails_path, class: "btn btn-secondary button-hover" %>
           <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete Cocktail ?" } do %>
-            <!-- <i class="fa-solid fa-trash-can text-danger fs-4"></i> -->
-            <i class="fa-regular fa-trash-can text-danger fs-4"></i>
+            <i class="fa-regular fa-trash-can text-danger fs-3"></i>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+  <h2 class="mt-5">Reviews</h2>
+  <% if @user_reviews %>
+    <% avg_rating_array = [] %>
+    <% @user_reviews.each do |review| %>
+      <% avg_rating_array.push(review.rating) %>
+    <% end %>
+    <% if avg_rating_array.any? %>
+      <% avg_rating = avg_rating_array.sum / avg_rating_array.length %>
+    <% else %>
+      <% avg_rating = 0 %>
+    <% end %>
+    <!-- When you implement stars for the H4 tag, use this template [rating number][stars][rating count] (see amazon,com for design inspiration -->
+    <h4 class="my-4">Average Rating: <%= avg_rating %> (<%= avg_rating_array.length %>)</h4>
+    <%= link_to "Write a cocktail review",  new_cocktail_user_review_path(@cocktail), class: "btn btn-info my-4" %>
+    <!-- See amazon.com for design inspiration -->
+    <% @user_reviews.each do |user_review| %>
+      <div class="card rounded shadow-sm p-3 mt-4">
+        <div class="card-body">
+          <p class="pink-font mb-1"><%= user_review.user.username %></p>
+          <div class="d-flex justify-content-start align-items-center mb-2 gap-3">
+            <p class="purple-font mb-0">Rating: <%= user_review.rating %></p>
+            <p class="fw-semibold mb-0 text-white"><%= user_review.title %></p>
+          </div>
+          <p class="grey-font">Reviewed on <%= user_review.created_at.strftime("%B %d, %Y") %></p>
+          <% if user_review.review.present? %>
+            <p class="text-light">"<%= user_review.review %>"</p>
+          <% else %>
+            <p class="grey-font">No written review available</p>
+          <% end %>
+        </div>
+        <% if user_review.img_1.present? || user_review.img_2.present? || user_review.img_3.present? %>
+          <div class="card-img-bottom d-flex justify-content-start gap-3 mt-3">
+            <% if user_review.img_1.present? %>
+              <img src="<%= user_review.img_1 %>" alt="cocktail image #1" class="img-thumbnail" style="max-height: 225px;">
+            <% end %>
+            <% if user_review.img_2.present? %>
+              <img src="<%= user_review.img_2 %>" alt="cocktail image #2" class="img-thumbnail" style="max-height: 225px;">
+            <% end %>
+            <% if user_review.img_3.present? %>
+              <img src="<%= user_review.img_3 %>" alt="cocktail image #3" class="img-thumbnail" style="max-height: 225px;">
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

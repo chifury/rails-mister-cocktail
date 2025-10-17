@@ -1,6 +1,6 @@
 class Ingredient < ApplicationRecord
-  has_many :doses # creates a method ingredient.doses ?
-  has_many :cocktails, through: :doses
+  has_many :doses # creates a method ingredient.doses
+  has_many :cocktails, through: :doses # creates a method ingredient.cocktails
 
   validates :name, presence: true, uniqueness: true
 

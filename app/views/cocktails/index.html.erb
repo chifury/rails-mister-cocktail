@@ -49,6 +49,14 @@
                   <% end %>
                 <% end %>
               </div>
+              <!-- Make the rating dynamic. Find a way to calculate the average rating for the correct cocktail. -->
+              <div>
+                <% @user_reviews.each do |review| %>
+                  <% if review.cocktail.name == cocktail.name %>
+                    <p class="text-light mt-4">Rating: </p>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>

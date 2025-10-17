@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_10_12_111520) do
+ActiveRecord::Schema[7.1].define(version: 2025_10_17_032411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,21 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_12_111520) do
     t.index ["cocktail_id"], name: "index_tags_on_cocktail_id"
   end
 
+  create_table "user_reviews", force: :cascade do |t|
+    t.float "rating"
+    t.string "review"
+    t.string "img_1"
+    t.string "img_2"
+    t.string "img_3"
+    t.bigint "cocktail_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.index ["cocktail_id"], name: "index_user_reviews_on_cocktail_id"
+    t.index ["user_id"], name: "index_user_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,4 +81,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_10_12_111520) do
   add_foreign_key "doses", "cocktails"
   add_foreign_key "doses", "ingredients"
   add_foreign_key "tags", "cocktails"
+  add_foreign_key "user_reviews", "cocktails"
+  add_foreign_key "user_reviews", "users"
 end

@@ -1,0 +1,17 @@
+<div class="container">
+  <h1 class="mt-5 mb-4">Rate Cocktail</h1>
+  <%= simple_form_for [@cocktail, @user_review], class: "form-control" do |f| %>
+    <div class="form-group">
+      <%= f.input :title, label: "Title", input_html: { placeholder: "Add a few words to summarize your review" } %>
+      <%= f.input :rating, label: "Rating 1-5", input_html: { placeholder: "(1 lowest, 5 highest)" } %>
+      <%= f.input :review, label: "Written review", as: :text, input_html: { placeholder: "(optional)" } %>
+      <%= f.input :img_1, label: "1st image", input_html: { placeholder: "image url (optional)" } %>
+      <%= f.input :img_2, label: "2nd image", input_html: { placeholder: "image url (optional)" } %>
+      <%= f.input :img_3, label: "3rd image", input_html: { placeholder: "image url (optional)" } %>
+      <div class="d-flex justify-content-start gap-3 mt-5">
+      <%= f.button :submit, "Submit", class: "btn btn-primary p-2" %>
+      <%= link_to "Back", cocktail_path(@cocktail), class: "btn btn-secondary p-2" %>
+      </div>
+    </div>
+  <% end %>
+</div>

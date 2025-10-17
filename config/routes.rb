@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :cocktails do
     resources :doses, only: [:new, :create, :destroy], shallow: true
     resources :tags, only: [:new, :create, :destroy], shallow: true
+    resources :user_reviews
   end
 
   resources :ingredients, only: [:new, :create]
+
 end

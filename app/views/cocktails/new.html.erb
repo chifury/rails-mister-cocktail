@@ -16,7 +16,7 @@
             <% counter += 1 %>
             <div data-form-field-vis-target="ingredient" hidden>
 
-              <!-- Hidden input field with `_destroy` as a substring value of the name attribute -->
+              <!-- Hidden input field with `_destroy` as a substring value of the name attribute. This is the "hook" for stimulus.js to find and manipulate the value of the name attribute. -->
               <%= dose_form.input :_destroy, as: :hidden %>
 
               <h4>Ingredient <%= counter %></h4>
@@ -44,7 +44,7 @@
             <% counter_tag += 1 %>
             <div data-tag-field-vis-target="tag" hidden>
 
-              <!-- Hidden input field with `_destroy` as a substring value of the name attribute -->
+              <!-- Hidden input field with `_destroy` as a substring 'value' of the 'name' (key) attribute. This is the "hook" for stimulus.js to find and manipulate the value of the name attribute. -->
               <%= tag_form.input :_destroy, as: :hidden %>
 
               <%= tag_form.input :name, label: "Tag #{counter_tag}", prompt: "Name" %>

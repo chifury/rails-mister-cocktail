@@ -5,6 +5,7 @@ class CocktailsController < ApplicationController
     @ingredients = Ingredient.all
     @doses = Dose.all
     @tags = Tag.all
+    @user_reviews = UserReview.all
   end
 
   def show
@@ -12,6 +13,7 @@ class CocktailsController < ApplicationController
     @ingredients = @cocktail.ingredients
     @doses = @cocktail.doses
     @tags = @cocktail.tags
+    @user_reviews = @cocktail.user_reviews
     # raise
   end
 
@@ -25,7 +27,7 @@ class CocktailsController < ApplicationController
     # raise
     @cocktail = Cocktail.new(cocktail_params)
     @cocktail.user = current_user
-    
+
     if @cocktail.save
       redirect_to cocktail_path(@cocktail), notice: "Cocktail was successfully created."
     else
@@ -39,6 +41,7 @@ class CocktailsController < ApplicationController
 
   def update
     @cocktail = Cocktail.find(params[:id])
+
     if @cocktail.update(cocktail_params)
       redirect_to cocktail_path(@cocktail)
     else

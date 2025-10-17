@@ -5,6 +5,7 @@ class Cocktail < ApplicationRecord
   has_many :doses, dependent: :destroy # creates a method cocktail.doses
   has_many :ingredients, through: :doses # creates a method cocktail.ingredients
   has_many :tags, dependent: :destroy # creates a method cocktail.tags
+  has_many :user_reviews, dependent: :destroy # creates a method cocktail.user_reviews
 
   accepts_nested_attributes_for :doses, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :tags, allow_destroy: true, reject_if: :all_blank

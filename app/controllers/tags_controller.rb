@@ -3,7 +3,7 @@ class TagsController < ApplicationController
   def index
     @tags = Tag.all
   end
-  
+
   def new
     @tag = Tag.new
   end
@@ -14,7 +14,7 @@ class TagsController < ApplicationController
     @tag.cocktail = @cocktail
 
     if @tag.save
-      redirect cocktail_path(@cocktail)
+      redirect_to cocktail_path(@cocktail)
     else
       render "new", content: :unprocessable_content
     end
@@ -34,6 +34,6 @@ class TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tags).permit(:name, :cocktail_id)
+    params.require(:tag).permit(:name, :cocktail_id)
   end
 end

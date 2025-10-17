@@ -15,6 +15,9 @@ Dose.destroy_all
 puts "cleaning User instances"
 User.destroy_all
 
+puts "cleaning User Review instances"
+UserReview.destroy_all
+
 puts "Adding data to the Database..."
 
 puts "creating users"
@@ -188,3 +191,15 @@ dose_90i.amount = 90.0
 dose_90i.ingredient = ingredient_10
 dose_90i.cocktail = cocktail_paloma
 dose_90i.save!
+
+puts "creating user reviews for cocktails"
+review_1 = UserReview.new
+review_1.rating = 4.5
+review_1.review = "Amazing cocktail. Tastes so fresh!"
+review_1.img_1 = "https://www.pamperedchef.ca/iceberg/com/recipe/1444068-lg.jpg"
+review_1.img_2 = "https://cdn.britannica.com/71/252371-050-6B48F07E/margarita-cocktail-alcoholic-drink.jpg"
+review_1.img_3 = "https://abeautifulmess.com/wp-content/uploads/2023/09/Margarita-Cocktail-1.jpg"
+review_1.cocktail = cocktail_margarita
+review_1.user = user1
+
+puts "seeding complete"
