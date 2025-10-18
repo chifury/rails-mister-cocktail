@@ -202,4 +202,4 @@ review_1.img_3 = "https://abeautifulmess.com/wp-content/uploads/2023/09/Margarit
 review_1.cocktail = cocktail_margarita
 review_1.user = user1
 
-puts "seeding complete"
+puts "Seed complete!"
