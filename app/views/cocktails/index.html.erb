@@ -51,11 +51,18 @@
               </div>
               <!-- Make the rating dynamic. Find a way to calculate the average rating for the correct cocktail. -->
               <div>
+                <% cocktail_rating = [] %>
                 <% @user_reviews.each do |review| %>
                   <% if review.cocktail.name == cocktail.name %>
-                    <p class="text-light mt-4">Rating: </p>
+                    <% cocktail_rating.push(review.rating) %>
                   <% end %>
                 <% end %>
+                <% if cocktail_rating.any? %>
+                  <% cocktail_rating_avg = cocktail_rating.sum / cocktail_rating.length %>
+                <% else %>
+                  <% cocktail_rating_avg = 0 %>
+                <% end %>
+                <p class="text-light mt-4">Rating: <%= cocktail_rating_avg %> (<%= cocktail_rating.length %>)</p>
               </div>
             </div>
           </div>
