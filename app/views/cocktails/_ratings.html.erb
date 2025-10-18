@@ -1,0 +1,91 @@
+<div>
+  <% if cocktail_rating >= 0.25 && cocktail_rating < 0.7 %>
+    <div>
+      <i class="fa-solid fa-star-half-stroke text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 0.7 && cocktail_rating < 1.4 %>
+    <div>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 1.4 && cocktail_rating < 1.7 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star-half-stroke text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 1.7 && cocktail_rating < 2.4 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 2.4 && cocktail_rating < 2.7 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star-half-stroke text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 2.7 && cocktail_rating < 3.4 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 3.4 && cocktail_rating < 3.7 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star-half-stroke text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 3.7 && cocktail_rating < 4.4 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-regular fa-star text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 4.4 && cocktail_rating < 4.7 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star-half-stroke text-info"></i>
+    </div>
+  <% elsif cocktail_rating >= 4.7 && cocktail_rating <= 5.0 %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+      <i class="fa-solid fa-star text-info"></i>
+    </div>
+  <% else %>
+    <div class="d-flex justify-content-start align-items-center gap-2">
+      <i class="fa-solid fa-star text-dark"></i>
+      <i class="fa-solid fa-star text-dark"></i>
+      <i class="fa-solid fa-star text-dark"></i>
+      <i class="fa-solid fa-star text-dark"></i>
+      <i class="fa-solid fa-star text-dark"></i>
+    </div>
+  <% end %>
+</div>

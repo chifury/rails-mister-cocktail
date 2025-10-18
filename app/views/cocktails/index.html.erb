@@ -39,7 +39,7 @@
               </p>
             </div>
             <div>
-              <div class="d-flex align-items-center flex-wrap" style="gap: 0.5rem;">
+              <div class="d-flex align-items-center flex-wrap mt-3" style="gap: 0.5rem;">
                 <h5 class="text-light mb-0 me-2">Tags:</h5>
                 <% @tags.each do |tag| %>
                   <% if tag.cocktail.name == cocktail.name %>
@@ -62,7 +62,24 @@
                 <% else %>
                   <% cocktail_rating_avg = 0 %>
                 <% end %>
-                <p class="text-light mt-4">Rating: <%= cocktail_rating_avg %> (<%= cocktail_rating.length %>)</p>
+                <!-- <p class="text-light mt-4">Rating: <%#= cocktail_rating_avg %> (<%#= cocktail_rating.length %>)</p> -->
+                <div class="d-flex justify-content-start align-items-center gap-2 mt-4 mb-3">
+                  <% if cocktail_rating_avg > 0 %>
+                  <p class="text-light"><%= cocktail_rating_avg %></p>
+                  <% end %>
+                  <!-- Review stars logic -->
+                  <%= render "ratings", cocktail_rating: cocktail_rating_avg %>
+                  <% review_array = [] %>
+                  <% @user_reviews.each do |review| %>
+                    <% if review.cocktail.name == cocktail.name %>
+                      <% review_array.push(review) %>
+                    <% end %>
+                  <% end %>
+                  <% reviews = review_array.length %>
+                  <% if reviews > 0 %>
+                  <p class="text-light">(<%= reviews %>)</p>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

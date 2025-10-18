@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="mt-5 mb-4">Rate Cocktail</h1>
+  <h1 class="mt-5 mb-4">Review the <%= @cocktail.name %> cocktail</h1>
   <%= simple_form_for [@cocktail, @user_review], class: "form-control" do |f| %>
     <div class="form-group">
       <%= f.input :title, label: "Title", input_html: { placeholder: "Add a few words to summarize your review" } %>

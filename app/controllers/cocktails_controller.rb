@@ -14,6 +14,7 @@ class CocktailsController < ApplicationController
     @doses = @cocktail.doses
     @tags = @cocktail.tags
     @user_reviews = @cocktail.user_reviews
+    @cocktail_rating_avg = show_cocktail_ratings(@user_reviews, @cocktail)
     # raise
   end
 
@@ -63,4 +64,20 @@ class CocktailsController < ApplicationController
   def cocktail_params
     params.require(:cocktail).permit(:name, :description, doses_attributes: [:id, :amount, :ingredient_id, { ingredient_attributes: [:id, :name] }, :_destroy], tags_attributes: [:id, :name, :_destroy])
   end
+
+  def show_cocktail_ratings(user_reviews, cocktail)
+    cocktail_rating = []
+
+    user_reviews.each do |review|
+      cocktail_rating.push(review.rating)
+    end
+
+    if cocktail_rating.any?
+      cocktail_rating.sum / cocktail_rating.length
+    else
+      0
+    end
+
+  end
+
 end
