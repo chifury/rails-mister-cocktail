@@ -1,20 +1,23 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="form-field-vis"
 export default class extends Controller {
-  static targets = ["ingredient"]
+  static targets = ["ingredient"];
 
   connect() {
-    console.log("ingredient controller connected")
-    this.visibleCount = 1 // Show first ingredient on load. If you set it to 0 it will show no ingredients on load.
-    this.updateVisibility() // Refer to this function whenever you need to check for visibility (if) conditions.
+    console.log("ingredient controller connected");
+    this.visibleCount = 1; // Show first ingredient on load. If you set it to 0 it will show no ingredients on load.
+    this.updateVisibility(); // Refer to this function whenever you need to check for visibility (if) conditions.
   }
 
   hiddenVisibleFields(event) {
     // console.group(event);
     // console.log(this.ingredientTargets)
-    this.visibleCount = Math.min(this.visibleCount + 1, this.ingredientTargets.length)
-    this.updateVisibility() // Refer to this function whenever you need to check for visibility (if) conditions.
+    this.visibleCount = Math.min(
+      this.visibleCount + 1,
+      this.ingredientTargets.length
+    );
+    this.updateVisibility(); // Refer to this function whenever you need to check for visibility (if) conditions.
   }
 
   updateVisibility() {
@@ -33,6 +36,6 @@ export default class extends Controller {
         element.setAttribute("hidden", "");
         if (destroyInput) destroyInput.value = "1"; // Mark for destruction.
       }
-    })
+    });
   }
 }

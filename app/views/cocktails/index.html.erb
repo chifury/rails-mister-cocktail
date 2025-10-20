@@ -65,7 +65,7 @@
                 <!-- <p class="text-light mt-4">Rating: <%#= cocktail_rating_avg %> (<%#= cocktail_rating.length %>)</p> -->
                 <div class="d-flex justify-content-start align-items-center gap-2 mt-4 mb-3">
                   <% if cocktail_rating_avg > 0 %>
-                  <p class="text-light"><%= cocktail_rating_avg %></p>
+                    <p class="text-light"><%= cocktail_rating_avg %></p>
                   <% end %>
                   <!-- Review stars logic -->
                   <%= render "ratings", cocktail_rating: cocktail_rating_avg %>
@@ -77,7 +77,7 @@
                   <% end %>
                   <% reviews = review_array.length %>
                   <% if reviews > 0 %>
-                  <p class="text-light">(<%= reviews %>)</p>
+                    <p class="text-light">(<%= reviews %>)</p>
                   <% end %>
                 </div>
               </div>
