@@ -9,7 +9,19 @@
     <div class="col-12 col-lg-5 me-5">
       <div class="vstack gap-2">
         <!-- description & how to -->
-        <h2 class="mb-3 mt-4">Recipe</h2>
+        <div class="d-flex justify-content-start align-items-center gap-4">
+          <h2 class="mb-3 mt-4">Recipe</h2>
+          <!-- Favorited cocktail feature -->
+          <% if current_user.favorited_cocktails.include?(@cocktail) %>
+            <%= link_to cocktail_favorite_path(@cocktail), method: :delete do %>
+              <i class="fa-solid fa-heart h1-font fs-2"></i>
+            <% end %>
+          <% else %>
+            <%= link_to cocktail_favorite_path(@cocktail), method: :post do %>
+              <i class="fa-regular fa-heart h1-font fs-2"></i>
+            <% end %>
+          <% end %>
+        </div>
         <div class="txt-grey">
           <h4>What You Need</h4>
           <ol>

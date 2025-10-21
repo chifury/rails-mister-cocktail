@@ -12,5 +12,6 @@ class PagesController < ApplicationController
   def journal
     @user = current_user
     @cocktails = @user.cocktails
+    @cocktail_favs = @user.favorited_cocktails
   end
 end

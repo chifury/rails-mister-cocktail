@@ -3,30 +3,24 @@
 }
 
 h1 {
-  color: #FF13F0;
+  color: #ff13f0;
   // font-weight: bold;
-  text-shadow:
-    0 0 5px #FF13F0,
-    0 0 10px #FF13F0,
-    0 0 20px #FF13F0,
-    0 0 40px #FF13F0;
+  text-shadow: 0 0 5px #ff13f0, 0 0 10px #ff13f0, 0 0 20px #ff13f0,
+    0 0 40px #ff13f0;
 }
 
 h2 {
-  color: #00FFFF;
-  text-shadow:
-    0 0 5px #00FFFF,
-    0 0 10px #00FFFF,
-    0 0 20px #00FFFF,
-    0 0 40px #00FFFF;
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff,
+    0 0 40px #00ffff;
 }
 
 h4 {
-  color: #D8B4FE;
+  color: #d8b4fe;
 }
 
 .txt-grey {
-  color: #D3D3D3;
+  color: #d3d3d3;
 }
 
 // .txt-pink {
@@ -34,35 +28,46 @@ h4 {
 // }
 
 .ingredients {
-  color: #D8B4FE;
+  color: #d8b4fe;
 }
 
 .purple-font {
-  color: #D8B4FE;
+  color: #d8b4fe;
 }
 
 .light {
-  color: #FFB6C1;
+  color: #ffb6c1;
 }
 
 .brand-font {
-  color: #F64EC2;
+  color: #f64ec2;
   // color: #772AFD;
 }
 
 .cyan-font {
-  color: #00FFFF;
+  color: #00ffff;
 }
 
 .pink-font {
-  color: #F64EC2;
+  color: #f64ec2;
 }
 
 .grey-font {
-  color: #B0B0B0;
+  color: #b0b0b0;
 }
 
 .d-flex p {
   margin: 0;
 }
 
+.h2-font {
+  color: #00ffff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff,
+    0 0 40px #00ffff;
+}
+
+.h1-font {
+  color: #ff13f0;
+  text-shadow: 0 0 5px #ff13f0, 0 0 10px #ff13f0, 0 0 20px #ff13f0,
+    0 0 40px #ff13f0;
+}
