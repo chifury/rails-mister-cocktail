@@ -2,6 +2,8 @@ class Cocktail < ApplicationRecord
   # associations
   # The dependent: :destroy on cocktails deletes associated doses when a cocktail is deleted, but not ingredients.
   belongs_to :user
+  has_many :favorites, dependent: :destroy # cocktails owned by user
+  has_many :favorited_by_users, through: :favorites, source: :user # creates method cocktail.favorited_by_users, which returns all users who have favorited this cocktail. 
   has_many :doses, dependent: :destroy # creates a method cocktail.doses
   has_many :ingredients, through: :doses # creates a method cocktail.ingredients
   has_many :tags, dependent: :destroy # creates a method cocktail.tags
