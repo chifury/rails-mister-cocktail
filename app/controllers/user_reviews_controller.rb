@@ -42,7 +42,7 @@ class UserReviewsController < ApplicationController
     if @user_review.destroy
       redirect_to cocktail_path(@cocktail)
     else
-      render :show, status: :unprocessable_content
+      render :show, status: :unprocessable_content, alert: "Unable to delete cocktail review."
     end
   end
 

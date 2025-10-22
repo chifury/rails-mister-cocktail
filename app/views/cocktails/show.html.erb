@@ -13,7 +13,7 @@
           <h2 class="mb-3 mt-4">Recipe</h2>
           <!-- Favorited cocktail feature -->
           <% if current_user.favorited_cocktails.include?(@cocktail) %>
-          <!-- If you want, using button_to vs link_to generates a form that works on its own, which is a fallback or simpler solution (button_to works with method: :delete & method: :post but not with turbo). link_to with method: :delete ( and 'data: { turbo_method: :delete }' ) works if JS is enabled and UJS is loaded. -->
+            <!-- If you want, using button_to vs link_to generates a form that works on its own, which is a fallback or simpler solution (button_to works with method: :delete & method: :post but not with turbo). link_to with method: :delete ( and 'data: { turbo_method: :delete }' ) works if JS is enabled and UJS is loaded. -->
             <%= link_to cocktail_favorite_path(@cocktail), data: { turbo_method: :delete }, class: "btn btn-link p-0" do %>
               <i class="fa-solid fa-heart h1-font fs-2"></i>
             <% end %>
@@ -57,7 +57,7 @@
         <div class="d-flex justify-content-start align-items-center gap-3">
           <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
           <%#= link_to "Browse", cocktails_path, class: "btn btn-secondary button-hover" %>
-          <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete Cocktail ?" } do %>
+          <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete cocktail ?" } do %>
             <i class="fa-regular fa-trash-can text-danger fs-3"></i>
           <% end %>
         </div>
@@ -80,7 +80,13 @@
   <% @user_reviews.each do |user_review| %>
     <div class="card rounded shadow-sm p-3 mt-4">
       <div class="card-body">
-        <p class="pink-font mb-1"><%= user_review.user.username %></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="pink-font mb-1"><%= user_review.user.username %></p>
+          <!-- Delete review -->
+          <%= link_to cocktail_user_review_path(@cocktail, user_review), data: { turbo_method: :delete, turbo_confirm: "Delete cocktail review ?" } do %>
+            <i class="fa-solid fa-xmark grey-font fs-5"></i>
+          <% end %>
+        </div>
         <div class="d-flex justify-content-start align-items-center mb-2 gap-3">
           <%= render "ratings", cocktail_rating: user_review.rating %>
           <!-- <p class="purple-font mb-0">Rating: <%#= user_review.rating %></p> -->
