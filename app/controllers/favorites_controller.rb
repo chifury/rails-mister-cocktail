@@ -7,7 +7,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    current_user.favorites.find_by(cocktail: @cocktail)&.destroy # searches the current user's favorites for a record where the cocktail matches @cocktail. The safe navigation operator (&.) prevents an error if no favorite record exists. It'll just skip .destroy rather than throw an exception. 
+    current_user.favorites.find_by(cocktail: @cocktail)&.destroy # searches the current user's favorites for a record where the cocktail matches @cocktail. The safe navigation operator (&.) prevents an error if no favorite record exists. It'll just skip .destroy rather than throw an exception.
     redirect_to @cocktail, notice: "Cocktail removed from favorites!"
   end
 
@@ -15,7 +15,7 @@ class FavoritesController < ApplicationController
   private
 
   # Keeps code D.R.Y. by setting @cocktail before running the actions as both actions will use the same @cocktail.
-  def set_action
+  def set_cocktail
     @cocktail = Cocktail.find(params[:cocktail_id])
   end
 end

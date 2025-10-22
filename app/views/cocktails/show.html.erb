@@ -12,12 +12,14 @@
         <div class="d-flex justify-content-start align-items-center gap-4">
           <h2 class="mb-3 mt-4">Recipe</h2>
           <!-- Favorited cocktail feature -->
+          <!-- TODO (with Perplexity AI): (1) review button_to vs link_to and (2) data: { turbo_method: :delete } -->
           <% if current_user.favorited_cocktails.include?(@cocktail) %>
-            <%= link_to cocktail_favorite_path(@cocktail), method: :delete do %>
+          <!-- If you want, using button_to vs link_to generates a form that works on its own, which is a fallback or simpler solution (button_to works with method: :delete & method: :post but not with turbo). link_to with method: :delete ( and 'data: { turbo_method: :delete }' ) works if JS is enabled and UJS is loaded. -->
+            <%= link_to cocktail_favorite_path(@cocktail), data: { turbo_method: :delete }, class: "btn btn-link p-0" do %>
               <i class="fa-solid fa-heart h1-font fs-2"></i>
             <% end %>
           <% else %>
-            <%= link_to cocktail_favorite_path(@cocktail), method: :post do %>
+            <%= link_to cocktail_favorite_path(@cocktail), data: { turbo_method: :post }, class: "btn btn-link p-0" do %>
               <i class="fa-regular fa-heart h1-font fs-2"></i>
             <% end %>
           <% end %>

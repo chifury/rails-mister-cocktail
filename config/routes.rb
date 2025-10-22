@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :doses, only: [:new, :create, :destroy], shallow: true
     resources :tags, only: [:new, :create, :destroy], shallow: true
     resources :user_reviews
-    resources :favorite, only: [:create, :destroy]
+    resource :favorite, only: [:create, :destroy]
   end
 
   resources :ingredients, only: [:new, :create]
