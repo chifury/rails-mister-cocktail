@@ -70,7 +70,7 @@
     <% if @cocktail_rating_avg > 0 %>
       <p class="fs-5 text-light"><%= @cocktail_rating_avg %></p>
     <% end %>
-    <%= render "ratings", cocktail_rating: @cocktail_rating_avg %>
+    <%= render "shared/ratings", cocktail_rating: @cocktail_rating_avg %>
     <% if @user_reviews.count > 0 %>
       <p class="fs-5 text-light">(<%= @user_reviews.count %>)</p>
     <% end %>
@@ -88,7 +88,7 @@
           <% end %>
         </div>
         <div class="d-flex justify-content-start align-items-center mb-2 gap-3">
-          <%= render "ratings", cocktail_rating: user_review.rating %>
+          <%= render "shared/ratings", cocktail_rating: @cocktail_rating_avg %>
           <!-- <p class="purple-font mb-0">Rating: <%#= user_review.rating %></p> -->
           <p class="fw-semibold mb-0 text-white"><%= user_review.title %></p>
         </div>

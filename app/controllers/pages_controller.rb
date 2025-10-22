@@ -13,5 +13,6 @@ class PagesController < ApplicationController
     @user = current_user
     @cocktails = @user.cocktails
     @cocktail_favs = @user.favorited_cocktails
+    @user_reviews = UserReview.all
   end
 end
