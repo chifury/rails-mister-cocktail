@@ -15,11 +15,11 @@
           <% if current_user.favorited_cocktails.include?(@cocktail) %>
             <!-- If you want, using button_to vs link_to generates a form that works on its own, which is a fallback or simpler solution (button_to works with method: :delete & method: :post but not with turbo). link_to with method: :delete ( and 'data: { turbo_method: :delete }' ) works if JS is enabled and UJS is loaded. -->
             <%= link_to cocktail_favorite_path(@cocktail), data: { turbo_method: :delete }, class: "btn btn-link p-0" do %>
-              <i class="fa-solid fa-heart h1-font fs-2"></i>
+              <i class="fa-solid fa-heart h1-font fs-2 card-hover"></i>
             <% end %>
           <% else %>
             <%= link_to cocktail_favorite_path(@cocktail), data: { turbo_method: :post }, class: "btn btn-link p-0" do %>
-              <i class="fa-regular fa-heart h1-font fs-2"></i>
+              <i class="fa-regular fa-heart h1-font fs-2 card-hover"></i>
             <% end %>
           <% end %>
         </div>

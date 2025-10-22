@@ -6,6 +6,7 @@ class CocktailsController < ApplicationController
     @doses = Dose.all
     @tags = Tag.all
     @user_reviews = UserReview.all
+    @cocktail_favs = current_user.favorited_cocktails
   end
 
   def show
