@@ -1,205 +1,140 @@
 puts "Cleaning the Database..."
 
-puts "cleaning Cocktail instances"
-Cocktail.destroy_all
-
-puts "cleaning Tag instances"
-Tag.destroy_all
-
-puts "cleaning Ingredient instances"
-Ingredient.destroy_all
-
-puts "cleaning Dose instances"
+Favorite.destroy_all if defined?(Favorite)
+UserReview.destroy_all
 Dose.destroy_all
-
-puts "cleaning User instances"
+Tag.destroy_all
+Cocktail.destroy_all
+Ingredient.destroy_all
 User.destroy_all
 
-puts "cleaning User Review instances"
-UserReview.destroy_all
+puts "Database cleaned!"
 
-puts "Adding data to the Database..."
+require 'faker'
+require 'set'
 
-puts "creating users"
-user1 = User.new(email: "drinksjournal.7p31d@silomails.com", password: "789123idfk", username: "bartender", first_name: "Baggins")
-user1.save!
+# ---------- USERS ----------
+puts "Creating users..."
+users = []
+21.times do
+  username = Faker::Internet.username(specifier: 5..10).gsub(/[^A-Za-z0-9_]/, '_')
+  user = User.create!(
+    email: Faker::Internet.unique.email,
+    password: "password123",
+    username: username,
+    first_name: Faker::Name.first_name
+  )
+  users << user
+end
+user_admin = User.create!(
+    email: "drinksjournal.7p31d@silomails.com",
+    password: "789123idfk",
+    username: "potionmaster_42",
+    first_name: Faker::Name.first_name
+  )
+users << user_admin
+puts "#{users.count} users created!"
 
-puts "creating cocktails"
-cocktail_margarita = Cocktail.new
-cocktail_margarita.user = user1
-cocktail_margarita.name = "margarita"
-cocktail_margarita.description = "Combine tequila, fresh lime juice, and triple sec in a shaker filled with ice. Shake well until chilled, then strain into a salt-rimmed glass. Garnish with a lime wheel for a refreshing, balanced cocktail perfect for any occasion."
-cocktail_margarita.save!
+# ---------- INGREDIENTS ----------
+puts "Creating ingredients..."
+ingredient_names = [
+  "Tequila", "Triple Sec", "Lime Juice", "Vodka", "Coffee Liqueur",
+  "Espresso", "Rum", "Coconut Cream", "Pineapple Juice",
+  "Grapefruit Soda", "Gin", "Tonic Water", "Lemon Juice",
+  "Simple Syrup", "Bitters", "Whiskey", "Vermouth", "Cranberry Juice",
+  "Honey Syrup", "Mint Leaves", "Orange Peel"
+]
 
-cocktail_pina_colada = Cocktail.new
-cocktail_pina_colada.user = user1
-cocktail_pina_colada.name = "pina colada"
-cocktail_pina_colada.description = "Blend white rum, coconut cream, and fresh pineapple juice with ice until smooth and creamy. Pour into a chilled glass and garnish with a pineapple wedge and maraschino cherry for a tropical, sweet treat."
-cocktail_pina_colada.save!
+ingredients = ingredient_names.map { |name| Ingredient.find_or_create_by!(name: name) }
+puts "#{ingredients.count} ingredients created!"
 
-cocktail_espresso_martini = Cocktail.new
-cocktail_espresso_martini.user = user1
-cocktail_espresso_martini.name = "espresso martini"
-cocktail_espresso_martini.description = "Shake vodka, freshly brewed espresso, coffee liqueur, and a touch of simple syrup with ice. Strain into a chilled martini glass and garnish with coffee beans for a rich, energizing cocktail."
-cocktail_espresso_martini.save!
+# ---------- COCKTAILS ----------
+puts "Creating cocktails..."
+cocktails = []
+used_cocktail_names = Set.new
 
-cocktail_paloma = Cocktail.new
-cocktail_paloma.user = user1
-cocktail_paloma.name = "paloma"
-cocktail_paloma.description = "Mix tequila with fresh grapefruit juice, lime juice, and a splash of soda water. Serve over ice in a salt-rimmed glass and garnish with a lime wedge for a bright, refreshing Mexican classic."
-cocktail_paloma.save!
+users.each do |user|
+  rand(1..4).times do
+    # Generate a unique and descriptive cocktail name
+    name = "#{Faker::Beer.name} #{['Martini', 'Fizz', 'Sour', 'Cooler', 'Spritz'].sample}".titleize
+    next if used_cocktail_names.include?(name)
+    used_cocktail_names << name
 
-puts "creating tags and cocktail associations"
-tag_1 = Tag.new
-tag_1.name = "tequila"
-tag_1.cocktail = cocktail_margarita
-tag_1.save!
+    # Create a realistic cocktail-style recipe description
+    methods = [
+      "Shake all ingredients with ice and strain into a chilled coupe glass.",
+      "Stirring with ice until well chilled, then strain into a rocks glass over a large cube.",
+      "Blend all ingredients until smooth, then serve with crushed ice in a tall glass.",
+      "Pour over ice and top with soda for a light and refreshing finish."
+    ]
 
-tag_2 = Tag.new
-tag_2.name = "rum"
-tag_2.cocktail = cocktail_pina_colada
-tag_2.save!
+    description = "Combine #{ingredients.sample.name.downcase}, #{ingredients.sample.name.downcase}, and "\
+                  "#{ingredients.sample.name.downcase} in a shaker. #{methods.sample} "\
+                  "Garnish with #{['a lime wheel', 'a mint sprig', 'an orange twist', 'a maraschino cherry'].sample} "\
+                  "to complete this handcrafted cocktail experience."
 
-tag_3 = Tag.new
-tag_3.name = "vodka"
-tag_3.cocktail = cocktail_espresso_martini
-tag_3.save!
+    cocktail = Cocktail.create!(
+      user: user,
+      name: name,
+      description: description
+    )
 
-tag_4 = Tag.new
-tag_4.name = "tequila"
-tag_4.cocktail = cocktail_paloma
-tag_4.save!
+    # Add doses (ingredient quantities)
+    chosen_ingredients = ingredients.sample(rand(2..5))
+    chosen_ingredients.each do |ingredient|
+      Dose.find_or_create_by!(cocktail: cocktail, ingredient: ingredient) do |dose|
+        dose.amount = rand(15..90) # in milliliters
+      end
+    end
 
-tag_4x = Tag.new
-tag_4x.name = "lime juice"
-tag_4x.cocktail = cocktail_paloma
-tag_4x.save!
+    # Tag cocktails by key ingredients
+    chosen_ingredients.each do |ingredient|
+      Tag.find_or_create_by!(name: ingredient.name.downcase, cocktail: cocktail)
+    end
 
-puts "creating ingredients"
-ingredient_1 = Ingredient.new
-ingredient_1.name = "tequila"
-ingredient_1.save!
+    cocktails << cocktail
+  end
+end
+puts "#{cocktails.count} cocktails created!"
 
-ingredient_2 = Ingredient.new
-ingredient_2.name = "triple sec"
-ingredient_2.save!
+# ---------- FAVORITES ----------
+puts "Creating favorites..."
+users.each do |user|
+  favorite_count = [rand(10..40), cocktails.count].min
+  cocktails.sample(favorite_count).each do |cocktail|
+    next if cocktail.user == user
+    user.favorites.find_or_create_by!(cocktail: cocktail)
+  end
+end
+puts "Favorites created!"
 
-ingredient_3 = Ingredient.new
-ingredient_3.name = "lime juice"
-ingredient_3.save!
+# ---------- REVIEWS ----------
+puts "Creating user reviews..."
+users.each do |user|
+  review_count = [rand(10..60), cocktails.count].min
+  cocktails.sample(review_count).each do |cocktail|
+    next if cocktail.user == user
+    UserReview.find_or_create_by!(cocktail: cocktail, user: user) do |review|
+      review.rating = rand(3.0..5.0).round(1)
+      review.title = [
+        "Perfectly Balanced",
+        "Sweet and Smooth",
+        "A Summer Favorite",
+        "Classic",
+        "Bold but Refreshing",
+        "Too Good to Share",
+        "Unexpected Delight",
+        "Strong!",
+        "Tropical Bliss",
+        "Mixology Magic"
+      ].sample
+      review.review = "#{Faker::Restaurant.review} #{SecureRandom.hex(3)}"
+      review.img_1 = "#{Faker::LoremFlickr.image(size: '400x400', search_terms: ['cocktail'])}?#{SecureRandom.hex(2)}"
+      review.img_2 = "#{Faker::LoremFlickr.image(size: '400x400', search_terms: ['drink'])}?#{SecureRandom.hex(2)}"
+      review.img_3 = "#{Faker::LoremFlickr.image(size: '400x400', search_terms: ['glass'])}?#{SecureRandom.hex(2)}"
+    end
+  end
+end
+puts "User reviews created!"
 
-ingredient_4 = Ingredient.new
-ingredient_4.name = "creamy coconut"
-ingredient_4.save!
-
-ingredient_5 = Ingredient.new
-ingredient_5.name = "white rum"
-ingredient_5.save!
-
-ingredient_6 = Ingredient.new
-ingredient_6.name = "pineapple juice"
-ingredient_6.save!
-
-ingredient_7 = Ingredient.new
-ingredient_7.name = "vodka"
-ingredient_7.save!
-
-ingredient_8 = Ingredient.new
-ingredient_8.name = "coffee liqueur"
-ingredient_8.save!
-
-ingredient_9 = Ingredient.new
-ingredient_9.name = "espresso"
-ingredient_9.save!
-
-ingredient_10 = Ingredient.new
-ingredient_10.name = "grapefruit soda"
-ingredient_10.save!
-
-puts "creating doses with corresponding ingredients to make a Margarita"
-dose_50 = Dose.new
-dose_50.amount = 50.0
-dose_50.ingredient = ingredient_1
-dose_50.cocktail = cocktail_margarita
-dose_50.save!
-
-dose_25 = Dose.new
-dose_25.amount = 25.0
-dose_25.ingredient = ingredient_2
-dose_25.cocktail = cocktail_margarita
-dose_25.save!
-
-dose_25i = Dose.new
-dose_25i.amount = 25.0
-dose_25i.ingredient = ingredient_3
-dose_25i.cocktail = cocktail_margarita
-dose_25i.save!
-
-puts "creating doses with corresponding ingredients to make a Pina Colada"
-dose_50i = Dose.new
-dose_50i.amount = 50.0
-dose_50i.ingredient = ingredient_5
-dose_50i.cocktail = cocktail_pina_colada
-dose_50i.save!
-
-dose_30 = Dose.new
-dose_30.amount = 30.0
-dose_30.ingredient = ingredient_4
-dose_30.cocktail = cocktail_pina_colada
-dose_30.save!
-
-dose_90 = Dose.new
-dose_90.amount = 90.0
-dose_90.ingredient = ingredient_6
-dose_90.cocktail = cocktail_pina_colada
-dose_90.save!
-
-puts "creating doses with corresponding ingredients to make a Espresso Martini"
-dose_40 = Dose.new
-dose_40.amount = 40.0
-dose_40.ingredient = ingredient_7
-dose_40.cocktail = cocktail_espresso_martini
-dose_40.save!
-
-dose_20 = Dose.new
-dose_20.amount = 20.0
-dose_20.ingredient = ingredient_8
-dose_20.cocktail = cocktail_espresso_martini
-dose_20.save!
-
-dose_30i = Dose.new
-dose_30i.amount = 30.0
-dose_30i.ingredient = ingredient_9
-dose_30i.cocktail = cocktail_espresso_martini
-dose_30i.save!
-
-puts "creating doses with corresponding ingredients to make a Paloma"
-dose_50ii = Dose.new
-dose_50ii.amount = 50.0
-dose_50ii.ingredient = ingredient_1
-dose_50ii.cocktail = cocktail_paloma
-dose_50ii.save!
-
-dose_15 = Dose.new
-dose_15.amount = 15.0
-dose_15.ingredient = ingredient_3
-dose_15.cocktail = cocktail_paloma
-dose_15.save!
-
-dose_90i = Dose.new
-dose_90i.amount = 90.0
-dose_90i.ingredient = ingredient_10
-dose_90i.cocktail = cocktail_paloma
-dose_90i.save!
-
-puts "creating user reviews for cocktails"
-review_1 = UserReview.new
-review_1.rating = 4.5
-review_1.review = "Amazing cocktail. Tastes so fresh!"
-review_1.img_1 = "https://www.pamperedchef.ca/iceberg/com/recipe/1444068-lg.jpg"
-review_1.img_2 = "https://cdn.britannica.com/71/252371-050-6B48F07E/margarita-cocktail-alcoholic-drink.jpg"
-review_1.img_3 = "https://abeautifulmess.com/wp-content/uploads/2023/09/Margarita-Cocktail-1.jpg"
-review_1.cocktail = cocktail_margarita
-review_1.user = user1
-
-puts "Seed complete!"
+puts "Seed complete! 🎉 #{users.count} Users, #{cocktails.count} Cocktails, and #{users.count * 10}+ interactions generated!"

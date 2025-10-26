@@ -73,7 +73,7 @@ class CocktailsController < ApplicationController
     end
 
     if cocktail_rating.any?
-      cocktail_rating.sum / cocktail_rating.length
+      (cocktail_rating.sum / cocktail_rating.length)
     else
       0
     end

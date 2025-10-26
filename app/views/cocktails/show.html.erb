@@ -68,7 +68,7 @@
   <!-- When you implement stars for the H4 tag, use this template [rating number][stars][rating count] (see amazon,com for design inspiration -->
   <div class="d-flex justify-content-start align-items-center gap-3 mt-4 mb-3">
     <% if @cocktail_rating_avg > 0 %>
-      <p class="fs-5 text-light"><%= @cocktail_rating_avg %></p>
+      <p class="fs-5 text-light"><%= @cocktail_rating_avg.round(1) %></p>
     <% end %>
     <%= render "shared/ratings", cocktail_rating: @cocktail_rating_avg %>
     <% if @user_reviews.count > 0 %>

@@ -58,7 +58,7 @@
                   <% end %>
                 <% end %>
               </div>
-              <!-- Make the rating dynamic. Find a way to calculate the average rating for the correct cocktail. -->
+              <!-- Average rating -->
               <div>
                 <% cocktail_rating = [] %>
                 <% @user_reviews.each do |review| %>
@@ -74,7 +74,7 @@
                 <!-- <p class="text-light mt-4">Rating: <%#= cocktail_rating_avg %> (<%#= cocktail_rating.length %>)</p> -->
                 <div class="d-flex justify-content-start align-items-center gap-2 mt-4 mb-3">
                   <% if cocktail_rating_avg > 0 %>
-                    <p class="text-light"><%= cocktail_rating_avg %></p>
+                    <p class="text-light"><%= cocktail_rating_avg.round(1) %></p>
                   <% end %>
                   <!-- Review stars logic -->
                   <%= render "shared/ratings", cocktail_rating: cocktail_rating_avg %>
