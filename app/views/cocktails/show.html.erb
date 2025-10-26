@@ -101,19 +101,25 @@
       </div>
       <% if user_review.img_1.present? || user_review.img_2.present? || user_review.img_3.present? %>
         <div class="card-img-bottom d-flex justify-content-start gap-3 mt-3 mb-2">
+          <%= render "shared/img_modal_1", image_1: user_review.img_1 %>
+          <%= render "shared/img_modal_2", image_2: user_review.img_2 %>
+          <%= render "shared/img_modal_3", image_3: user_review.img_3 %>
           <% if user_review.img_1.present? %>
             <%= link_to "#" do %>
-              <img src="<%= user_review.img_1 %>" alt="cocktail image #1" class="img-thumbnail card-hover" style="max-height: 225px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <img src="<%= user_review.img_1 %>" alt="cocktail image #1" class="img-thumbnail card-hover" style="max-height: 225px;" data-bs-toggle="modal" data-bs-target="#imgModalOne">
             <% end %>
           <% end %>
           <% if user_review.img_2.present? %>
-            <img src="<%= user_review.img_2 %>" alt="cocktail image #2" class="img-thumbnail card-hover" style="max-height: 225px;">
+            <%= link_to "#" do  %>
+              <img src="<%= user_review.img_2 %>" alt="cocktail image #2" class="img-thumbnail card-hover" style="max-height: 225px;" data-bs-toggle="modal" data-bs-target="#imgModalTwo">
+            <% end %>
           <% end %>
           <% if user_review.img_3.present? %>
-            <img src="<%= user_review.img_3 %>" alt="cocktail image #3" class="img-thumbnail card-hover" style="max-height: 225px;">
+            <%= link_to "#" do %>
+              <img src="<%= user_review.img_3 %>" alt="cocktail image #3" class="img-thumbnail card-hover" style="max-height: 225px;" data-bs-toggle="modal" data-bs-target="#imgModalThree">
+            <% end %>
           <% end %>
         </div>
-        <%= render "shared/img_modal", image: user_review.img_1 %>
       <% end %>
     </div>
   <% end %>

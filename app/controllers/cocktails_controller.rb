@@ -16,7 +16,6 @@ class CocktailsController < ApplicationController
     @tags = @cocktail.tags
     @user_reviews = @cocktail.user_reviews
     @cocktail_rating_avg = show_cocktail_ratings(@user_reviews, @cocktail)
-    # raise
   end
 
   def new
