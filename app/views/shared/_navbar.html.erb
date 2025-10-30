@@ -10,8 +10,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto gap-2">
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to cocktails_path, class: "nav-link active fs-5", "aria-current": "page" do %>
+          <li class="nav-item active">
+            <%= link_to cocktails_path, class: "nav-link fs-5", "aria-current": "page" do %>
               Browse <i class="fa-regular fa-rectangle-list"></i>
             <% end %>
           </li>
