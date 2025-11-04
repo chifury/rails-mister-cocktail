@@ -68,6 +68,5 @@ h4 {
 
 .h1-font {
   color: #ff13f0;
-  text-shadow: 0 0 5px #ff13f0, 0 0 10px #ff13f0, 0 0 20px #ff13f0,
-    0 0 40px #ff13f0;
+  filter: drop-shadow(0 0 2px #8a0c77) drop-shadow(0 0 5px #ff13f0);
 }
