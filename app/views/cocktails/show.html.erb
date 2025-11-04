@@ -53,6 +53,17 @@
             <% end %>
           </div>
         </div>
+        <div class="mb-3">
+          <p class="dark-grey-font">
+            <i class="fa-regular fa-user me-2"></i>
+            Created by <span class="text-light fst-italic"><%= @cocktail.user.username %></span>
+            <i class="fa-regular fa-calendar ms-3 me-2"></i>
+            <%= @cocktail.created_at.strftime("%B %d, %Y") %>
+          </p>
+
+
+
+        </div>
         <!-- navigation buttons -->
         <div class="d-flex justify-content-start align-items-center gap-3">
           <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
