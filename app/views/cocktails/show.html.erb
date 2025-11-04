@@ -56,9 +56,15 @@
         <div class="mb-3">
           <p class="dark-grey-font">
             <i class="fa-regular fa-user me-2"></i>
-            Created by <span class="text-light fst-italic"><%= @cocktail.user.username %></span>
-            <i class="fa-regular fa-calendar ms-3 me-2"></i>
-            <%= @cocktail.created_at.strftime("%B %d, %Y") %>
+            <% if @cocktail.user == current_user %>
+              Created by <span class="text-light fst-italic">You</span>
+              <i class="fa-regular fa-calendar ms-3 me-2"></i>
+              <%= @cocktail.created_at.strftime("%B %d, %Y") %>
+            <% else %>
+              Created by <span class="text-light fst-italic"><%= @cocktail.user.username %></span>
+              <i class="fa-regular fa-calendar ms-3 me-2"></i>
+              <%= @cocktail.created_at.strftime("%B %d, %Y") %>
+            <% end %>
           </p>
         </div>
         <!-- navigation buttons -->
