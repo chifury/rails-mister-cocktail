@@ -1,4 +1,5 @@
 class UserReviewsController < ApplicationController
+  # after_action :verify_authorized, unless: :skip_pundit?
 
   def new
     @cocktail = Cocktail.find(params[:cocktail_id])

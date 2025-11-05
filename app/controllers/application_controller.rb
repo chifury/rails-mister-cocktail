@@ -5,16 +5,18 @@ class ApplicationController < ActionController::Base
 
   # The original syntax with explicit parentheses and braces would be:
   # after_action(:verify_policy_scoped, { only: :index, unless: :skip_pundit? })
-  # 
+  #
   # In Ruby, parentheses around method arguments and curly braces for hashes are optional. Remember also, that the curly braces {} of a hash that's used as an argument of a method call can be omitted in Ruby.
   # when the meaning is clear. Omitting them is a common style in Rails for readability and brevity.
   # So the more idiomatic form is written without parentheses and braces:
   # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
-  after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  # after_action :verify_authorized, except: :index, unless: :skip_pundit?
+    # Commented out the above line of code because it didn't make sense to have this verification to be applied at the top level ("blanket rule"), since not all Controllers have an :index action. Had to apply this verification at the individual Controller level (where Controllers managed protected resources and thus, user authorization was implemented) not at the ApplicationController level. *
   # Another way to write it:
   # after_action(:verify_policy_scoped, { only: :index, unless: :skip_pundit? })
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+    # *
 
   # Uncomment when you *really understand* Pundit!
   # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
@@ -38,7 +40,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller ? || params[:controller] =~
+    devise_controller? || params[:controller] =~
     /(^(rails_)?admin)|(^pages$)/
   end
 end

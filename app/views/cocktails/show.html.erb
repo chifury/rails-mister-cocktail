@@ -72,8 +72,10 @@
           <% if policy(@cocktail).edit? %>
             <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
           <% end %>
-          <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, if policy(@cocktail).destroy?, turbo_confirm: "Delete cocktail ?" } do %>
-            <i class="fa-regular fa-trash-can text-danger fs-3"></i>
+          <% if policy(@cocktail).destroy? %>
+            <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete cocktail ?" } do %>
+              <i class="fa-regular fa-trash-can text-danger fs-3"></i>
+            <% end %>
           <% end %>
         </div>
       </div>

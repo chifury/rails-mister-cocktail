@@ -14,21 +14,24 @@ class CocktailPolicy < ApplicationPolicy
   end
 
   def update?
+    return true if user.admin?  # admin can edit any cocktails.
     record.user == user
     # record: the cocktail passed to the `authorize` method in controller.
     # user: the `current_user` signed in with Devise.
   end
 
   def destroy?
+    return true if user.admin? # admin can destroy any cocktails.
     record.user == user
   end
 
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.all # If users can see all restaurants
-      # scope.where(user: user) # If users can only see their restaurants.
-      # scope.where("name LIKE 't%'") # If users can only see restaurants starting with `t`.
+      scope.all # If users can see all cocktails.
+      # scope.where(user: user) # If users can only see their cocktails.
+      # scope.where("name LIKE 't%'") # If users can only see cocktails starting with `t`.
+      # user.admin? ? scope.all : scope.where(user: user) # (ternary operator - shorthand way of writing a simple if-else statement in Ruby and many other programming languages (condition ? expression_if_true : expression_if_false). Ternary operators make the code more concise when you have simple conditional assignments or returns.) # If admin can see all cocktails but users can only see their cocktails.
     end
   end
 end

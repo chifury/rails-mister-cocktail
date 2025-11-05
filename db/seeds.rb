@@ -16,13 +16,14 @@ require 'set'
 # ---------- USERS ----------
 puts "Creating users..."
 users = []
-21.times do
+22.times do
   username = Faker::Internet.username(specifier: 5..10).gsub(/[^A-Za-z0-9_]/, '_')
   user = User.create!(
     email: Faker::Internet.unique.email,
     password: "password123",
     username: username,
-    first_name: Faker::Name.first_name
+    first_name: Faker::Name.first_name,
+    admin: false
   )
   users << user
 end
@@ -30,9 +31,18 @@ user_admin = User.create!(
     email: "drinksjournal.7p31d@silomails.com",
     password: "789123idfk",
     username: "potionmaster_42",
-    first_name: Faker::Name.first_name
+    first_name: Faker::Name.first_name,
+    admin: true
   )
 users << user_admin
+user_1 = User.create!(
+    email: "user_1_test.e6pxv@slmails.com",
+    password: "password1234v",
+    username: "wizard_mixer",
+    first_name: Faker::Name.first_name,
+    admin: false
+  )
+users << user_1
 puts "#{users.count} users created!"
 
 # ---------- INGREDIENTS ----------
