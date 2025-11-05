@@ -1,6 +1,9 @@
 <div class="container">
   <h1 class="mt-5"><%= @user.first_name.capitalize %>'s Profile </h1>
   <h2 class="my-4">Account Information</h2>
+  <% if @user.admin == true %>
+    <p class="dark-grey-font">Admin</p>
+  <% end %>
   <p><span class="purple-font">Name:</span> <%= @user.first_name %></p>
   <p><span class="purple-font">Username:</span> <%= @user.username %></p>
   <p><span class="purple-font">Email:</span> <%= @user.email %></p>

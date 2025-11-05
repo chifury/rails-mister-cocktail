@@ -44,6 +44,14 @@
               <%= image_tag "happy-dog5.png", alt: "user avatar image", class: "avatar" %>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navBarDropdown">
+              <li class="small ms-3">
+                <% if current_user.admin %>
+                  <%= current_user.username %> (admin)
+                <% else %>
+                  <%= current_user.username %>
+                <% end %>
+              </li>
+              <hr>
               <li>
                 <%= link_to "Profile", user_profile_path, class: "dropdown-item fs-5" %>
                 <!-- <i class="fa-solid fa-user"></i> Profile -->
