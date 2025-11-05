@@ -16,8 +16,9 @@ class CocktailPolicy < ApplicationPolicy
   def update?
     return true if user.admin?  # admin can edit any cocktails.
     record.user == user
-    # record: the cocktail passed to the `authorize` method in controller.
+    # record: the cocktail passed to the `authorize` method in controller. record.user is the cocktail's (that's passed in earlier) user.
     # user: the `current_user` signed in with Devise.
+    # record.user == user, checks whether the cocktail's user (the cocktail that was passed in earlier) is the same as the current_user.
   end
 
   def destroy?

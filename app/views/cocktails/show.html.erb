@@ -67,7 +67,7 @@
             <% end %>
           </p>
         </div>
-        <!-- navigation buttons -->
+        <!-- Edit and delete buttons -->
         <div class="d-flex justify-content-start align-items-center gap-3">
           <% if policy(@cocktail).edit? %>
             <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
@@ -81,8 +81,8 @@
       </div>
     </div>
   </div>
+  <!-- Cocktail reviews -->
   <h2 class="mt-5">Reviews</h2>
-  <!-- When you implement stars for the H4 tag, use this template [rating number][stars][rating count] (see amazon,com for design inspiration -->
   <div class="d-flex justify-content-start align-items-center gap-3 mt-4 mb-3">
     <% if @cocktail_rating_avg > 0 %>
       <p class="fs-5 text-light"><%= @cocktail_rating_avg.round(1) %></p>
@@ -92,16 +92,19 @@
       <p class="fs-5 text-light">(<%= @user_reviews.count %>)</p>
     <% end %>
   </div>
-  <%= link_to "Write a cocktail review",  new_cocktail_user_review_path(@cocktail), class: "btn btn-info my-4" %>
-  <!-- See amazon.com for design inspiration -->
+  <% if policy(UserReview).new? %>
+    <%= link_to "Write a cocktail review",  new_cocktail_user_review_path(@cocktail), class: "btn btn-info my-4" %>
+  <% end %>
   <% @user_reviews.each do |user_review| %>
     <div class="card rounded shadow-sm p-3 mt-4">
       <div class="card-body">
         <div class="d-flex justify-content-between align-items-center">
           <p class="pink-font mb-1"><%= user_review.user.username %></p>
           <!-- Delete review -->
-          <%= link_to cocktail_user_review_path(@cocktail, user_review), data: { turbo_method: :delete, turbo_confirm: "Delete cocktail review ?" } do %>
-            <i class="fa-solid fa-xmark grey-font fs-5"></i>
+          <% if policy(user_review).destroy? %>
+            <%= link_to cocktail_user_review_path(@cocktail, user_review), data: { turbo_method: :delete, turbo_confirm: "Delete cocktail review ?" } do %>
+              <i class="fa-solid fa-xmark grey-font fs-5"></i>
+            <% end %>
           <% end %>
         </div>
         <div class="d-flex justify-content-start align-items-center mb-2 gap-3">
