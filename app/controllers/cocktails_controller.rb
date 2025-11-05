@@ -1,7 +1,9 @@
 class CocktailsController < ApplicationController
 
   def index
-    @cocktails = Cocktail.all
+    # @cocktails = Cocktail.all
+    # Above (uncommented `@cocktails = Cocktail.all`) is the unfiltered version of cocktails and holds the entire unfiltered collection of cocktails.
+    @cocktails = policy_scope(Cocktail) # Holds the filtered collection of cocktails that the current user is authorized to see, according to the rules defined in the CocktailPolicy.
     @ingredients = Ingredient.all
     @doses = Dose.all
     @tags = Tag.all
@@ -16,18 +18,21 @@ class CocktailsController < ApplicationController
     @tags = @cocktail.tags
     @user_reviews = @cocktail.user_reviews
     @cocktail_rating_avg = show_cocktail_ratings(@user_reviews, @cocktail)
+    authorize @cocktail # Another way to write this is authorize(@cocktail) but Ruby syntax allows the omission of parentheses () after the method call (#authorize) when the meaning is clear. It is common in Rails code to write the version without parentheses for readability.
   end
 
   def new
     @cocktail = Cocktail.new
     5.times { @cocktail.doses.build.build_ingredient } # builds both dose and nested ingredient
     10.times { @cocktail.tags.build }
+    authorize @cocktail
   end
 
   def create
     # raise
     @cocktail = Cocktail.new(cocktail_params)
     @cocktail.user = current_user
+    authorize @cocktail
 
     if @cocktail.save
       redirect_to cocktail_path(@cocktail), notice: "Cocktail was successfully created."
@@ -38,10 +43,12 @@ class CocktailsController < ApplicationController
 
   def edit
     @cocktail = Cocktail.find(params[:id])
+    authorize @cocktail
   end
 
   def update
     @cocktail = Cocktail.find(params[:id])
+    authorize @cocktail
 
     if @cocktail.update(cocktail_params)
       redirect_to cocktail_path(@cocktail)
@@ -52,6 +59,8 @@ class CocktailsController < ApplicationController
 
   def destroy
     @cocktail = Cocktail.find(params[:id])
+    authorize @cocktail
+
     if @cocktail.destroy
       redirect_to cocktails_path, status: :see_other
     else

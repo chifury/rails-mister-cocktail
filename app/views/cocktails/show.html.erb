@@ -69,9 +69,10 @@
         </div>
         <!-- navigation buttons -->
         <div class="d-flex justify-content-start align-items-center gap-3">
-          <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
-          <%#= link_to "Browse", cocktails_path, class: "btn btn-secondary button-hover" %>
-          <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, turbo_confirm: "Delete cocktail ?" } do %>
+          <% if policy(@cocktail).edit? %>
+            <%= link_to "Edit", edit_cocktail_path(@cocktail), class: "btn btn-primary btn-lg me-2" %>
+          <% end %>
+          <%= link_to cocktail_path(@cocktail), data: { turbo_method: :delete, if policy(@cocktail).destroy?, turbo_confirm: "Delete cocktail ?" } do %>
             <i class="fa-regular fa-trash-can text-danger fs-3"></i>
           <% end %>
         </div>

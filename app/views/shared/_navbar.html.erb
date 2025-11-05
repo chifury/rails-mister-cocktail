@@ -16,7 +16,7 @@
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to new_cocktail_path, class: nav_link_class(new_cocktail_path), "aria-current": (current_page?(new_cocktail_path) ? "page" : nil) do %>
+            <%= link_to new_cocktail_path if policy(Cocktail).new?, class: nav_link_class(new_cocktail_path), "aria-current": (current_page?(new_cocktail_path) ? "page" : nil) do %>
               New Cocktail <i class="fa-solid fa-martini-glass-citrus"></i>
             <% end %>
           </li>
