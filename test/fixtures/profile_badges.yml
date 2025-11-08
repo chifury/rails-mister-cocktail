@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile: one
+  badge: one
+  awarded_at: 2025-11-08 16:50:19
+
+two:
+  profile: two
+  badge: two
+  awarded_at: 2025-11-08 16:50:19

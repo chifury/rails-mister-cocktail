@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_07_091913) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_08_095210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "criteria"
+    t.integer "xp"
+    t.string "icon_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "level_required"
+    t.string "icon_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "cocktails", force: :cascade do |t|
     t.string "name"
@@ -43,10 +62,46 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_07_091913) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "points", force: :cascade do |t|
+    t.integer "xp"
+    t.integer "level"
+    t.bigint "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_points_on_profile_id"
+  end
+
+  create_table "profile_achievements", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "achievement_id", null: false
+    t.datetime "awarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievement_id"], name: "index_profile_achievements_on_achievement_id"
+    t.index ["profile_id"], name: "index_profile_achievements_on_profile_id"
+  end
+
+  create_table "profile_badges", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "badge_id", null: false
+    t.datetime "awarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_profile_badges_on_badge_id"
+    t.index ["profile_id"], name: "index_profile_badges_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -101,6 +156,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_07_091913) do
   add_foreign_key "doses", "ingredients"
   add_foreign_key "favorites", "cocktails"
   add_foreign_key "favorites", "users"
+  add_foreign_key "points", "profiles"
+  add_foreign_key "profile_achievements", "achievements"
+  add_foreign_key "profile_achievements", "profiles"
+  add_foreign_key "profile_badges", "badges"
+  add_foreign_key "profile_badges", "profiles"
   add_foreign_key "profiles", "users"
   add_foreign_key "tags", "cocktails"
   add_foreign_key "user_reviews", "cocktails"
