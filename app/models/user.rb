@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :profile, dependent: :destroy
   after_create :create_profile
 
+  # Self-referential many-to-many relationship
   # User follows others - active relationships
   has_many :active_follows, class_name: "Follow",
                             foreign_key: "follower_id",
@@ -20,6 +21,7 @@ class User < ApplicationRecord
                              dependent: :destroy
   has_many :followers, through: :passive_follows, source: :follower
 
+  # User relationship with cocktails and favorites. 
   has_many :cocktails, dependent: :destroy # cocktails owned by user
   has_many :favorites, dependent: :destroy # favorites join records
   has_many :favorited_cocktails, through: :favorites, source: :cocktail # creates method current_user.favorited_cocktails, which retrieves all cocktails the user has favorited.

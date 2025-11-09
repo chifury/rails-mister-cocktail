@@ -7,5 +7,5 @@ class Dose < ApplicationRecord
   validates :amount, presence: true
   validates :cocktail, presence: true
   validates :ingredient, presence: true
-  validates :ingredient_id, uniqueness: { scope: :cocktail_id }
+  validates :ingredient_id, uniqueness: { scope: :cocktail_id } # This ensures Rails will validate that each ingredient is unique Per cocktail before saving. 
 end
