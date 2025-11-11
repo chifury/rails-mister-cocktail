@@ -17,7 +17,7 @@
               <%#= dose_form.input :_destroy, as: :hidden %>
 
               <h4>Ingredient <%= counter %></h4>
-              <%= dose_form.input :amount, label: "Amount (ml)", placeholder: "45", hint: "Input numbers only. Remember 45ml = 1 shot." %>
+              <%= dose_form.input :amount, label: "Amount (ml)", hint: "Input numbers only. Remember 45ml = 1 shot." %>
               <%= dose_form.input :ingredient_id, collection: Ingredient.all, prompt: "Select Existing Ingredient" %>
               <p>Or create a new ingredient (optional)</p>
               <%= dose_form.simple_fields_for :ingredient do |ingredient_form| %>
