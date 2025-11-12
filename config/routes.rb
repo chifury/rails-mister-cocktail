@@ -15,4 +15,10 @@ Rails.application.routes.draw do
 
   resources :ingredients, only: [:new, :create]
 
+  resources :profiles, only: [:show, :index] do
+    resources :achievements, only: [:create, :destroy]
+    resources :badges, only: [:create, :destroy]
+    resources :follows, only: [:create, :destroy]
+    resources :points, only: [:create, :destroy]
+  end
 end
