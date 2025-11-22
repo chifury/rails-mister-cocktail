@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-12">
       <!-- Create cocktail form -->
-      <%= simple_form_for @cocktail, class: "form-control" do |f| %>
+      <%= simple_form_for @cocktail do |f| %>
         <%= f.input :name %>
         <%= f.input :description, as: :text %>
         <!-- Create doses and associated ingredients -->
